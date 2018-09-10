@@ -8,7 +8,8 @@
 
 - [x] https://www.ea.com/news/teaching-ai-agents-battlefield-1 
 - [ ] https://www.ea.com/seed/news/seed-imitation-learning-concurrent-actions
-
+- [ ] https://blogs.unity3d.com/2018/06/26/solving-sparse-reward-tasks-with-curiosity/
+- [ ] https://blogs.unity3d.com/2018/05/24/imitation-learning-in-unity-the-workflow/
 
 ## All links to research papers
 
