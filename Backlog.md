@@ -8,9 +8,12 @@
 
 - [x] https://www.ea.com/news/teaching-ai-agents-battlefield-1 
 - [x] https://www.ea.com/seed/news/seed-imitation-learning-concurrent-actions
+- Interesting, has potential
 - [x] https://blogs.unity3d.com/2018/06/26/solving-sparse-reward-tasks-with-curiosity/
-- [ ] https://blogs.unity3d.com/2018/05/24/imitation-learning-in-unity-the-workflow/
-
+- [x] https://blogs.unity3d.com/2018/05/24/imitation-learning-in-unity-the-workflow/
+- Short Tutorial
+- [ ] https://unity3d.com/machine-learning/
+- [ ] https://blogs.unity3d.com/2017/12/11/using-machine-learning-agents-in-a-real-game-a-beginners-guide/
 ## All links to research papers
 
 - [ ] https://arxiv.org/abs/1803.05402
