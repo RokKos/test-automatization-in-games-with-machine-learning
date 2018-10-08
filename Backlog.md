@@ -23,3 +23,7 @@
 ## All tools that might be helpful
 
 - [ ] https://github.com/Unity-Technologies/ml-agents
+
+## Inspiration
+
+- [ ] https://connect.unity.com/challenges/ml-agents-1
