@@ -3,6 +3,7 @@
 ## All links to videos
 - [x] https://www.youtube.com/watch?v=ZZsSx6kAi6Y&feature=youtu.be 
 - [x] https://www.youtube.com/watch?time_continue=1&v=LW20UbquVBU
+- [x] https://youtu.be/nntQ3QuWyuM
 
 ## All links to articles 
 
