@@ -28,3 +28,9 @@
 ## Inspiration
 
 - [ ] https://connect.unity.com/challenges/ml-agents-1
+
+## Development tutorials
+ - [ ] https://github.com/Unity-Technologies/ml-agents/blob/master/docs/ML-Agents-Overview.md
+ - [ ] https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Getting-Started-with-Balance-Ball.md
+ - [ ] https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Create-New.md
+ - [ ] https://www.youtube.com/playlist?list=PLX2vGYjWbI0R08eWQkO7nQkGiicHAX7IX
