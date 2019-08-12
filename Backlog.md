@@ -34,3 +34,21 @@
  - [ ] https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Getting-Started-with-Balance-Ball.md
  - [ ] https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Create-New.md
  - [ ] https://www.youtube.com/playlist?list=PLX2vGYjWbI0R08eWQkO7nQkGiicHAX7IX
+
+
+
+## eprints.fri
+- [] http://eprints.fri.uni-lj.si/3054/1/63110060-TADEJ_GOLOBI%C4%8C-Program_za_avtomatsko_preverjanje_algoritmov_napisanih_v_programskem_jeziku_C%2B%2B.pdf
+- [x] http://eprints.fri.uni-lj.si/3660/1/63100218-Alja_Kunovar-Ogrodje_za_ovrednotenje_ustreznosti_aktivnosti_in_orodij_pri_testiranju_mobilnih_aplikacij.pdf
+- [] http://eprints.fri.uni-lj.si/3610/1/63100292-MITJA_RIZVI%C4%8C-Avtomatsko_odkrivanje_zanimivih_%C5%A1ahovskih_problemov.pdf
+- [] http://eprints.fri.uni-lj.si/4337/
+- [] http://eprints.fri.uni-lj.si/4002/
+- [x] http://eprints.fri.uni-lj.si/4159/1/63140186-SANDI_PANGERC-Avtomatizirano_testiranje_aplikacije_Android.pdf
+- [] http://eprints.fri.uni-lj.si/2995/
+- [] http://eprints.fri.uni-lj.si/817/
+- [] https://www.fkkt.uni-lj.si/sl/knjiznica-fkkt-in-fri/uporabne-povezave-do-on-line-informacijskih-virov/
+
+## Google scolar
+-[] http://new.aaai.org/Papers/AAAI/2005/AAAI05-142.pdf
+https://ieeexplore.ieee.org/abstract/document/8094439
+https://ieeexplore.ieee.org/abstract/document/7338274/citations#citations
