@@ -18,6 +18,9 @@
 ## All links to research papers
 
 - [ ] https://arxiv.org/abs/1803.05402
+-- [ ] https://www.ncbi.nlm.nih.gov/pubmed/25719670  --> Reinforncment learning
+-- [ ] https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/NgHaradaRussell-shaping-ICML1999.pdf  -> Kako dajat nagrade
+-- [ ] https://pdfs.semanticscholar.org/abfe/7735a4ca6a965b87c9566c73733cd1132c87.pdf
 - [ ] https://arxiv.org/abs/1602.01783
 - [ ] https://pathak22.github.io/noreward-rl/
 
@@ -52,3 +55,34 @@
 -[] http://new.aaai.org/Papers/AAAI/2005/AAAI05-142.pdf
 https://ieeexplore.ieee.org/abstract/document/8094439
 https://ieeexplore.ieee.org/abstract/document/7338274/citations#citations
+
+
+## Quotes
+
+------
+https://arxiv.org/abs/1803.05402 
+
+This technique is known as imitation learning (IL) [Subramanian
+et al., 2016, Hester et al., 2017a, Le et al., 2018, Andersen
+et al., 2018, Nair et al., 2017, Zhang and Ma, 2018, Gao
+et al., 2018]. Imitation learning provides the agent with prior
+knowledge about effective strategies for behaving in the world.
+Combining TD RL with IL allows an agent to learn from it’s
+own experiences, and helps to avoid situations where the skill
+of an agent is limited by the skill of the teacher. Learning via
+imitation can either be the goal itself, or an auxiliary task that
+is used to help achieve another goal by bootstrapping off the
+behaviour of an expert
+
+-------
+
+## Youtube
+    Proximal Policy Optimization
+ - [x] https://www.youtube.com/watch?v=5P7I-xPq8u8
+ - [ ] https://www.youtube.com/watch?v=0Ey02HT_1Ho
+ - [ ] https://www.youtube.com/watch?v=JgvyzIkgxF0
+
+ ## Unity ML Toolkit
+ - [] https://arxiv.org/abs/1809.02627
+ - [] https://arxiv.org/abs/1707.06347
+ - [] https://arxiv.org/abs/1502.05477
