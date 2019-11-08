@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private SoundWaveController sound_wave_controller_ = null;
+    [SerializeField] private MarchingSquares marchingSquares = null;
     [Range(0.0f, 5.0f)] [SerializeField] private float next_burst_time_ = 0.3f;
     [Range(1, 360)] [SerializeField] private int burst_separation_angle_ = 20;
     [Range(0.0f, 100.0f)] [SerializeField] private float force_strenght_ = 3f;
@@ -21,7 +22,6 @@ public class PlayerController : MonoBehaviour
         //////
         /// Temporary test
         ///
-        MarchingSquares marchingSquares = new MarchingSquares();
         Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
             {false, false},
             {false, false}
@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
         });
         
         Debug.Log(marchingSquares.ResultToString(result));
+        marchingSquares.CreateGrid(result);
     }
 
     // Update is called once per frame

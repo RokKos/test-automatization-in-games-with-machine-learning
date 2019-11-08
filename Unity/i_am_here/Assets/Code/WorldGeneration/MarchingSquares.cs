@@ -7,6 +7,8 @@ using UnityEngine.Assertions;
 
 public class MarchingSquares : MonoBehaviour
 {
+    [SerializeField]private List<GameObject> CaseColliders = null;
+    
     // TODO(Rok Kos): Change to private when done testing
     public byte LineLookUp(bool[,] square)
     {
@@ -61,6 +63,17 @@ public class MarchingSquares : MonoBehaviour
         }
 
         return s;
+    }
+
+    public void CreateGrid(byte[,] res)
+    {
+        for (int y = 0; y < res.GetLength(0); y++)
+        {
+            for (int x = 0; x < res.GetLength(1); x++)
+            {
+                Instantiate(CaseColliders[res[y, x]], new Vector3(x, -y), Quaternion.identity, null);
+            }
+        }
     }
 }
 
