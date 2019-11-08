@@ -16,6 +16,54 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         burst_timer_ = 0.0f;
+        
+        
+        //////
+        /// Temporary test
+        ///
+        MarchingSquares marchingSquares = new MarchingSquares();
+        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
+            {false, false},
+            {false, false}
+        }
+        ));
+        
+        
+        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
+                {true, false},
+                {false, false}
+            }
+        ));
+        
+        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
+                {false, true},
+                {false, false}
+            }
+        ));
+        
+        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
+                {false, false},
+                {true, false}
+            }
+        ));
+        
+        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
+                {false, false},
+                {false, true}
+            }
+        ));
+        
+        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
+                {false, true},
+                {false, true}
+            }
+        ));
+        
+        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
+                {true, true},
+                {false, true}
+            }
+        ));
     }
 
     // Update is called once per frame
