@@ -64,6 +64,18 @@ public class PlayerController : MonoBehaviour
                 {false, true}
             }
         ));
+
+
+        byte[,] result = marchingSquares.ParseGrid(new bool[,]
+        {
+            {true, true, true, true, true },
+            {true, false, false, false, true },
+            {true, false, false, false, true },
+            {true, false, false, false, true },
+            {true, true, true, true, true },
+        });
+        
+        Debug.Log(marchingSquares.ResultToString(result));
     }
 
     // Update is called once per frame
