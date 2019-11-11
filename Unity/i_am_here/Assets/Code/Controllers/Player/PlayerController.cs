@@ -68,11 +68,11 @@ public class PlayerController : MonoBehaviour
 
         byte[,] result = marchingSquares.ParseGrid(new bool[,]
         {
-            {true, true, true, true, true },
-            {true, false, false, false, true },
-            {true, false, false, false, true },
-            {true, false, false, false, true },
-            {true, true, true, true, true },
+            {true, true, true, true, true,true, true, true, true, true },
+            {true, false, false, false, true, true, true, false, false, true },
+            {true, false, true, false, true, false, false, false, false, true },
+            {true, false, true, true, true, false, false, false, false, true },
+            {true, true, true, true, true, true, true, true, true, true },
         });
         
         Debug.Log(marchingSquares.ResultToString(result));
