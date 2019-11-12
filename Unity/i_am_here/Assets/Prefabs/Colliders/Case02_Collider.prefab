@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3885327175732659408}
   - component: {fileID: 1653172987271602796}
   m_Layer: 0
-  m_Name: Case02_Collider 1
+  m_Name: Case02_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3717293250043622656}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -56,6 +56,6 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.5, y: 0.5}
+    - - {x: 0.5, y: 0}
       - {x: 0.5, y: -0.5}
-      - {x: -0.5, y: -0.5}
+      - {x: 0, y: -0.5}

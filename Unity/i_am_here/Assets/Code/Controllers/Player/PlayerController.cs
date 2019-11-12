@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         //////
         /// Temporary test
         ///
-        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
+        /*Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
             {false, false},
             {false, false}
         }
@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
         
         Debug.Log(marchingSquares.ResultToString(result));
         marchingSquares.CreateGrid(result);
+        */
     }
 
     // Update is called once per frame

@@ -8,7 +8,8 @@ using UnityEngine.Assertions;
 public class MarchingSquares : MonoBehaviour
 {
     [SerializeField]private List<GameObject> CaseColliders = null;
-    
+    [SerializeField]private GameObject WorldParent = null;
+
     // TODO(Rok Kos): Change to private when done testing
     public byte LineLookUp(bool[,] square)
     {
@@ -67,13 +68,38 @@ public class MarchingSquares : MonoBehaviour
 
     public void CreateGrid(byte[,] res)
     {
+        GameObject temp = new GameObject();
         for (int y = 0; y < res.GetLength(0); y++)
         {
+            GameObject row = Instantiate(temp, new Vector3(0, 0,0), Quaternion.identity, WorldParent.transform);
+            row.name = "row " + y;
             for (int x = 0; x < res.GetLength(1); x++)
             {
-                Instantiate(CaseColliders[res[y, x]], new Vector3(x, -y), Quaternion.identity, null);
+                Instantiate(CaseColliders[res[y, x]], new Vector3(x, -y, 0), Quaternion.identity, row.transform);
             }
         }
+        Destroy(temp,0);
+    }
+
+    public bool[,] ConvertLevelToGrid(Level level)
+    {
+        bool[,] grid = new bool[level.rows,level.columns];
+        for (int y = 0; y < level.rows; y++)
+        {
+            for (int x = 0; x < level.columns; x++)
+            {
+                if (level.board[y * level.rows + x] == Square.kWall)
+                {
+                    grid[x, y] = true;
+                }
+                else
+                {
+                    grid[x, y] = false;
+                }
+            }
+        }
+
+        return grid;
     }
 }
 
