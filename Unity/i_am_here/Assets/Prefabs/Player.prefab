@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4098006019169827559}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,14 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2410dc27a8b987f46b2ca4839971d86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound_wave_controller_: {fileID: 6801793016639110317, guid: 5f54300b5e96a4a40b614d5d5921dc19,
-    type: 3}
-  next_burst_time_: 0.3
-  burst_separation_angle_: 30
+  burstSeparationAngle: 40
   bursOffsetAngle: 5
   burstOffsetVector: 0.2
-  force_strenght_: 8
+  forceStrenght: 8
   movementCoeficient: 0.1
+  nextBurstTime: 0.3
 --- !u!1 &7627061138563509959
 GameObject:
   m_ObjectHideFlags: 0

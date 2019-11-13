@@ -10,15 +10,17 @@ public class WorldManager : MonoBehaviour
     private int levelIndex = 0;
     
     [Header("Player")]
-    [SerializeField] private PlayerController playerController = null;
-    // Start is called before the first frame update
+    [SerializeField] private PlayerController playerControllerPrefab = null;
+    [SerializeField] private GoalController goalControllerPrefab = null;
+    [SerializeField] private SoundWaveController soundWaveControllerPrefab = null;
+    
     void Start()
     {
         marchingSquares.CreateGrid(marchingSquares.ParseGrid(marchingSquares.ConvertLevelToGrid(Levels.levels[levelIndex])));
-        SpawnPlayer();
+        SpawnEntities();
     }
 
-    private void SpawnPlayer()
+    private void SpawnEntities()
     {
         // TODO(Rok Kos): Test how many starts and how many ends are there
         Level level = Levels.levels[levelIndex];
@@ -27,9 +29,31 @@ public class WorldManager : MonoBehaviour
             for (int x = 0; x < level.columns; ++x)
             {
                 int index = y * level.rows + x;
+
+                switch (level.board[index])
+                {
+                    case Square.kStart:
+                    {
+                        PlayerController playerController = Instantiate(playerControllerPrefab, new Vector3(y - 0.5f, -x + 0.5f, 0), Quaternion.identity, null);
+                        playerController.Init(soundWaveControllerPrefab);
+                        break;
+                    }
+                    case Square.kEnd:
+                    {
+                        GoalController goalController = Instantiate(goalControllerPrefab, new Vector3(y - 0.5f, -x + 0.5f, 0), Quaternion.identity, null);
+                        goalController.Init(soundWaveControllerPrefab);
+                        break;
+                    }
+                    
+                    case Square.kEnemy:
+                    case Square.kEmtpy:
+                    default:
+                        continue;
+                }
+                
                 if (level.board[index] == Square.kStart)
                 {
-                    Instantiate(playerController, new Vector3(y - 0.5f, -x + 0.5f, 0), Quaternion.identity, null);
+                    
                     return;
                 }
 

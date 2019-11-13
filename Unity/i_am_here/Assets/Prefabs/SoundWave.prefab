@@ -185,6 +185,7 @@ MonoBehaviour:
   rigidbody_: {fileID: 7574132244345094850}
   collider_: {fileID: 213634988104917691}
   max_time_alive_: 1
+  TrailRenderer: {fileID: 580389087780894543}
 --- !u!50 &7574132244345094850
 Rigidbody2D:
   serializedVersion: 4

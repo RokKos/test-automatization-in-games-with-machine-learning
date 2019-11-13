@@ -3,16 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : WorldEntityController
 {
-    [SerializeField] private SoundWaveController sound_wave_controller_ = null;
-    [Range(0.0f, 5.0f)] [SerializeField] private float next_burst_time_ = 0.3f;
-    [Range(1, 360)] [SerializeField] private int burst_separation_angle_ = 20;
-    [Range(1, 360)] [SerializeField] private int bursOffsetAngle = 5;
-    [Range(0.0f, 1.0f)] [SerializeField] private float burstOffsetVector = 0.2f;
-    [Range(0.0f, 100.0f)] [SerializeField] private float force_strenght_ = 3f;
-    [Range(0.0f, 100.0f)] [SerializeField] private float movementCoeficient = 0.1f;
     
+    [Range(0.0f, 5.0f)] [SerializeField] private float nextBurstTime = 0.3f;
+
     private float burst_timer_ = 0.0f;
 
     // Start is called before the first frame update
@@ -55,25 +50,26 @@ public class PlayerController : MonoBehaviour
         }
 
         // Visual presentation
-        if (key_pressed && burst_timer_ > next_burst_time_)
+        if (key_pressed && burst_timer_ > nextBurstTime)
         {
-            Burst();
+            Burst(Color.white);
             burst_timer_ = 0.0f;
         }
     }
 
-    void Burst()
+    protected override void OnCollisionEnter2D(Collision2D other)
     {
-        for (int angle = 0; angle < 360; angle += burst_separation_angle_)
+        if (other.gameObject.tag == "Goal")
         {
-            float angle_in_rad = (float) (angle + bursOffsetAngle) * Mathf.Deg2Rad;
-            Vector2 dir = new Vector2((float)Math.Cos(angle_in_rad), (float)Math.Sin(angle_in_rad));
-
-            SoundWaveController sound_wave_controller =
-                Instantiate(sound_wave_controller_, transform.position + new Vector3(dir.x, dir.y, 0) * burstOffsetVector, Quaternion.identity, null);
-            sound_wave_controller.GetRigidbody().AddForce(dir * force_strenght_, ForceMode2D.Impulse);
+            // Handled in GoalController
+            return;
         }
 
+
+        if (other.gameObject.tag == "Enviroment")
+        {
+            Burst(Color.red);
+        }
     }
 
 }

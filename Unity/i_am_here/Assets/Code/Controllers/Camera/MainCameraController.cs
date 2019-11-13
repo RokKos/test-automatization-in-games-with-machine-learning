@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MainCameraController : MonoBehaviour
 {
-    [SerializeField] private WorldManager WorldManager;
+    [SerializeField] private WorldManager WorldManager = null;
     // Start is called before the first frame update
     void Start()
     {

@@ -8,18 +8,19 @@ public class SoundWaveController : MonoBehaviour
     [SerializeField] private Rigidbody2D rigidbody_ = null;
     [SerializeField] private CircleCollider2D collider_ = null;
     [SerializeField] private float max_time_alive_ = 1.0f;
+    [SerializeField] private TrailRenderer TrailRenderer = null;
 
     private float time_alive_ = 0.0f;
-    
+
     public Rigidbody2D GetRigidbody()
     {
         return rigidbody_;
     }
-    
+
     public CircleCollider2D GetCircleCollider()
     {
         return collider_;
-        
+
     }
 
     private void Start()
@@ -36,4 +37,12 @@ public class SoundWaveController : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    public void SetLineColor(Color color)
+    {
+        TrailRenderer.startColor = color;
+        TrailRenderer.endColor = color;
+    }
+
+
 }

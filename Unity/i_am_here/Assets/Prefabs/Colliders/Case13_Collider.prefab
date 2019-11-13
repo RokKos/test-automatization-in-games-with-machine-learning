@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8350609339368369755}
   m_Layer: 10
   m_Name: Case13_Collider
-  m_TagString: Untagged
+  m_TagString: Enviroment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
