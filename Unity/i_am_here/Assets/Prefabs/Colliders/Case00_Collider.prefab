@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7678156637994356832}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Case00_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

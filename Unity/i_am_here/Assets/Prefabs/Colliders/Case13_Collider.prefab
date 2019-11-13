@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5834807607876094183}
   - component: {fileID: 8350609339368369755}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Case13_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -6,10 +6,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private SoundWaveController sound_wave_controller_ = null;
-    [SerializeField] private MarchingSquares marchingSquares = null;
     [Range(0.0f, 5.0f)] [SerializeField] private float next_burst_time_ = 0.3f;
     [Range(1, 360)] [SerializeField] private int burst_separation_angle_ = 20;
+    [Range(1, 360)] [SerializeField] private int bursOffsetAngle = 5;
+    [Range(0.0f, 1.0f)] [SerializeField] private float burstOffsetVector = 0.2f;
     [Range(0.0f, 100.0f)] [SerializeField] private float force_strenght_ = 3f;
+    [Range(0.0f, 100.0f)] [SerializeField] private float movementCoeficient = 0.1f;
     
     private float burst_timer_ = 0.0f;
 
@@ -17,67 +19,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         burst_timer_ = 0.0f;
-        
-        
-        //////
-        /// Temporary test
-        ///
-        /*Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
-            {false, false},
-            {false, false}
-        }
-        ));
-        
-        
-        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
-                {true, false},
-                {false, false}
-            }
-        ));
-        
-        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
-                {false, true},
-                {false, false}
-            }
-        ));
-        
-        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
-                {false, false},
-                {true, false}
-            }
-        ));
-        
-        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
-                {false, false},
-                {false, true}
-            }
-        ));
-        
-        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
-                {false, true},
-                {false, true}
-            }
-        ));
-        
-        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
-                {true, true},
-                {false, true}
-            }
-        ));
-
-
-        byte[,] result = marchingSquares.ParseGrid(new bool[,]
-        {
-            {true, true, true, true, true,true, true, true, true, true },
-            {true, false, false, false, true, true, true, false, false, true },
-            {true, false, true, false, true, false, false, false, false, true },
-            {true, false, true, true, true, false, false, false, false, true },
-            {true, true, true, true, true, true, true, true, true, true },
-        });
-        
-        Debug.Log(marchingSquares.ResultToString(result));
-        marchingSquares.CreateGrid(result);
-        */
     }
 
     // Update is called once per frame
@@ -91,25 +32,25 @@ public class PlayerController : MonoBehaviour
         // Input handling
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.position += Vector3.left;
+            transform.position += Vector3.left * movementCoeficient;
             key_pressed = true;
         }
         
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            transform.position += Vector3.right;
+            transform.position += Vector3.right * movementCoeficient;
             key_pressed = true;
         }
         
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            transform.position += Vector3.up;
+            transform.position += Vector3.up * movementCoeficient;
             key_pressed = true;
         }
         
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            transform.position += Vector3.down;
+            transform.position += Vector3.down * movementCoeficient;
             key_pressed = true;
         }
 
@@ -125,11 +66,11 @@ public class PlayerController : MonoBehaviour
     {
         for (int angle = 0; angle < 360; angle += burst_separation_angle_)
         {
-            float angle_in_rad = (float) angle * Mathf.Deg2Rad;
+            float angle_in_rad = (float) (angle + bursOffsetAngle) * Mathf.Deg2Rad;
             Vector2 dir = new Vector2((float)Math.Cos(angle_in_rad), (float)Math.Sin(angle_in_rad));
 
             SoundWaveController sound_wave_controller =
-                Instantiate(sound_wave_controller_, transform.position + new Vector3(dir.x, dir.y, 0), Quaternion.identity, null);
+                Instantiate(sound_wave_controller_, transform.position + new Vector3(dir.x, dir.y, 0) * burstOffsetVector, Quaternion.identity, null);
             sound_wave_controller.GetRigidbody().AddForce(dir * force_strenght_, ForceMode2D.Impulse);
         }
 

@@ -7,7 +7,7 @@ public class SoundWaveController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rigidbody_ = null;
     [SerializeField] private CircleCollider2D collider_ = null;
-    [SerializeField] private float max_time_alive_ = 4.0f;
+    [SerializeField] private float max_time_alive_ = 1.0f;
 
     private float time_alive_ = 0.0f;
     
