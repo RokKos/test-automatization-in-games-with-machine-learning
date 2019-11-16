@@ -211,5 +211,32 @@ namespace IAmHere.UnitTests
             }));
 
         }
+        
+        [Test]
+        public void GridMedium()
+        {
+            
+            bool[,] gridMedium = new bool[,]
+            {
+                {true, true, true, true, true,true, true, true, true, true },
+                {true, false, false, false, true, true, true, false, false, true },
+                {true, false, true, false, true, false, false, false, false, true },
+                {true, false, true, true, true, false, false, false, false, true },
+                {true, true, true, true, true, true, true, true, true, true },
+            };
+            
+            byte[,] result = new byte[,]
+            {
+                {13, 12, 12, 14, 15, 15, 13, 12, 14},
+                {9, 2, 1, 6, 13, 12, 8, 0, 6},
+                {9, 6, 11, 7, 9, 0, 0, 0, 6},
+                {11, 7, 15, 15, 11, 3, 3, 3, 7}
+            };
+            
+            Assert.AreEqual(result, marchingSquares.ParseGrid(gridMedium));
+
+        }
+        
+        
     }
 }

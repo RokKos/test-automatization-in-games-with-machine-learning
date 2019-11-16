@@ -11,69 +11,6 @@ namespace IAmHere.WorldGeneration
         [SerializeField] private GameObject WorldParent = null;
 
 
-
-
-        //////
-        /// Temporary test
-        ///
-        /*Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
-            {false, false},
-            {false, false}
-        }
-        ));
-        
-        
-        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
-                {true, false},
-                {false, false}
-            }
-        ));
-        
-        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
-                {false, true},
-                {false, false}
-            }
-        ));
-        
-        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
-                {false, false},
-                {true, false}
-            }
-        ));
-        
-        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
-                {false, false},
-                {false, true}
-            }
-        ));
-        
-        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
-                {false, true},
-                {false, true}
-            }
-        ));
-        
-        Debug.LogFormat("{0}", marchingSquares.LineLookUp(new bool[,]{
-                {true, true},
-                {false, true}
-            }
-        ));
-
-
-        byte[,] result = marchingSquares.ParseGrid(new bool[,]
-        {
-            {true, true, true, true, true,true, true, true, true, true },
-            {true, false, false, false, true, true, true, false, false, true },
-            {true, false, true, false, true, false, false, false, false, true },
-            {true, false, true, true, true, false, false, false, false, true },
-            {true, true, true, true, true, true, true, true, true, true },
-        });
-        
-        Debug.Log(marchingSquares.ResultToString(result));
-        marchingSquares.CreateGrid(result);
-        */
-
-
         // TODO(Rok Kos): Change to private when done testing
         public byte LineLookUp(bool[,] square)
         {
