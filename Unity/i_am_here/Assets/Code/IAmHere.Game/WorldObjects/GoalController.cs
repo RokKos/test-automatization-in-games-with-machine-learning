@@ -8,6 +8,7 @@ namespace IAmHere.Game
         {
             if (other.gameObject.tag == "Player")
             {
+                // TODO(Rok Kos): Create action to game manager that is level cleared
                 Burst(Color.white);
                 Debug.Log("END");
             }

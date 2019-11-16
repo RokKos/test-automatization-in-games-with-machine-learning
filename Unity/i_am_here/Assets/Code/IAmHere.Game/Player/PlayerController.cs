@@ -2,57 +2,86 @@
 
 namespace IAmHere.Game
 {
+    enum PlayerState
+    {
+        kPlayerIdle,
+        kPlayerMoved,
+        kPlayerHurt,
+        kLast
+    }
+
     public class PlayerController : WorldEntityController
     {
 
         [Range(0.0f, 5.0f)] [SerializeField] private float nextBurstTime = 0.3f;
 
-        private float burst_timer_ = 0.0f;
+        private float burstTimer = 0.0f;
+
+        private PlayerState playerState = PlayerState.kPlayerIdle;
+        private bool playerDead = false;
 
         // Start is called before the first frame update
         void Start()
         {
-            burst_timer_ = 0.0f;
+            burstTimer = 0.0f;
         }
 
         // Update is called once per frame
         void Update()
         {
-            burst_timer_ += Time.deltaTime;
 
-            bool key_pressed = false;
+            switch (playerState)
+            {
+                case PlayerState.kPlayerHurt:
+                    Burst(Color.red);
+                    burstTimer = 0.0f;
+                    break;
+                case PlayerState.kPlayerMoved:
+                    if (burstTimer > nextBurstTime)
+                    {
+                        Burst(Color.white);
+                        burstTimer = 0.0f;
+                    }
+
+                    break;
+                
+                default:
+                    break;
+            }
+
+            playerState = PlayerState.kPlayerIdle;
+
+            if (playerDead)
+            {
+                return;
+            }
+
+            burstTimer += Time.deltaTime;
 
 
             // Input handling
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 transform.position += Vector3.left * movementCoeficient;
-                key_pressed = true;
+                playerState = PlayerState.kPlayerMoved;
             }
 
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 transform.position += Vector3.right * movementCoeficient;
-                key_pressed = true;
+                playerState = PlayerState.kPlayerMoved;
             }
 
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 transform.position += Vector3.up * movementCoeficient;
-                key_pressed = true;
+                playerState = PlayerState.kPlayerMoved;
             }
 
             if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
                 transform.position += Vector3.down * movementCoeficient;
-                key_pressed = true;
-            }
-
-            // Visual presentation
-            if (key_pressed && burst_timer_ > nextBurstTime)
-            {
-                Burst(Color.white);
-                burst_timer_ = 0.0f;
+                playerState = PlayerState.kPlayerMoved;
             }
         }
 
@@ -67,7 +96,9 @@ namespace IAmHere.Game
 
             if (other.gameObject.tag == "Enviroment")
             {
-                Burst(Color.red);
+                // TODO(Rok Kos): Create action to game manager that is game over...
+                playerDead = true;
+                playerState = PlayerState.kPlayerHurt;
             }
         }
 
