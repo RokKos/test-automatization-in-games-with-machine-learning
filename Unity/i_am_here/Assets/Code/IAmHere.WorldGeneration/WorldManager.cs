@@ -63,12 +63,6 @@ namespace IAmHere.WorldGeneration
                             continue;
                     }
 
-                    if (level.board[index] == Square.kStart)
-                    {
-
-                        return;
-                    }
-
                 }
             }
         }
