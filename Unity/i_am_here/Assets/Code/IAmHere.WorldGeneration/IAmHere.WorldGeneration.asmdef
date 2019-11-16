@@ -1,0 +1,14 @@
+{
+    "name": "IAmHere.WorldGeneration",
+    "references": [
+        "GUID:79bfcea5e67c5364a894388d98617dda"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
