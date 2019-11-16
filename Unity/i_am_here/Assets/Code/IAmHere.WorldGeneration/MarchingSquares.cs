@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace IAmHere.WorldGeneration
 {
-    public class MarchingSquares : MonoBehaviour
+    public class MarchingSquares 
     {
-        [SerializeField] private List<GameObject> CaseColliders = null;
-        [SerializeField] private GameObject WorldParent = null;
 
 
         // TODO(Rok Kos): Change to private when done testing
@@ -65,22 +61,6 @@ namespace IAmHere.WorldGeneration
             }
 
             return s;
-        }
-
-        public void CreateGrid(byte[,] res)
-        {
-            GameObject temp = new GameObject();
-            for (int y = 0; y < res.GetLength(0); y++)
-            {
-                GameObject row = Instantiate(temp, new Vector3(0, 0, 0), Quaternion.identity, WorldParent.transform);
-                row.name = "row " + y;
-                for (int x = 0; x < res.GetLength(1); x++)
-                {
-                    Instantiate(CaseColliders[res[y, x]], new Vector3(x, -y, 0), Quaternion.identity, row.transform);
-                }
-            }
-
-            Destroy(temp, 0);
         }
 
         public bool[,] ConvertLevelToGrid(Level level)

@@ -13,7 +13,12 @@ namespace IAmHere.Game
     public class PlayerController : WorldEntityController
     {
 
+        public delegate void OnPlayerDead(WorldEntityController killingEntity);
+
+        public OnPlayerDead onPlayerDead;
+        
         [Range(0.0f, 5.0f)] [SerializeField] private float nextBurstTime = 0.3f;
+        [Range(0.0f, 100.0f)] [SerializeField] protected float movementCoeficient = 0.1f;
 
         private float burstTimer = 0.0f;
 
@@ -32,14 +37,10 @@ namespace IAmHere.Game
 
             switch (playerState)
             {
-                case PlayerState.kPlayerHurt:
-                    Burst(Color.red);
-                    burstTimer = 0.0f;
-                    break;
                 case PlayerState.kPlayerMoved:
                     if (burstTimer > nextBurstTime)
                     {
-                        Burst(Color.white);
+                        onBurst(this, transform.position, Color.white, burstSeparationAngle, bursOffsetAngle, burstOffsetVector, forceStrenght);
                         burstTimer = 0.0f;
                     }
 
@@ -98,6 +99,7 @@ namespace IAmHere.Game
             {
                 // TODO(Rok Kos): Create action to game manager that is game over...
                 playerDead = true;
+                onPlayerDead(other.gameObject.GetComponent<WorldEntityController>());
                 playerState = PlayerState.kPlayerHurt;
             }
         }

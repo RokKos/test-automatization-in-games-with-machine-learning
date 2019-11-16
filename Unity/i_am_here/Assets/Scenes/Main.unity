@@ -120,6 +120,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &129683632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 129683633}
+  m_Layer: 0
+  m_Name: SoundWaveParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &129683633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129683632}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1137376967}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &207263973
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,13 +180,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Levels: {fileID: 11400000, guid: e6437d5664af57749bcea5a347dc688f, type: 2}
-  marchingSquares: {fileID: 1751230218}
+  CaseColliders:
+  - {fileID: -6677615974908888360, guid: 7125bca320d22fd4f84b7cbfea9b5bd0, type: 3}
+  - {fileID: -8286961954792690895, guid: fd28f9437682a284ea891e0ac97519f5, type: 3}
+  - {fileID: -1279891342553666098, guid: 5e9f943e1ca0dc84596594265717b6a7, type: 3}
+  - {fileID: -9067429037008495377, guid: e05882c3b0c0fef4a88d6ab32c3d88f7, type: 3}
+  - {fileID: 1587403733607667775, guid: 64f6375e5be2ed54ebe2f4a9b457ff67, type: 3}
+  - {fileID: 8305178055094326792, guid: 1754164272fbdc94383fea33b1da1330, type: 3}
+  - {fileID: 7470218828889068785, guid: 3db641c4d4b18be4192a2732cda9b83c, type: 3}
+  - {fileID: 3081163678960753208, guid: 6e1423f1999d593429479b4e70265111, type: 3}
+  - {fileID: -7007382493113393008, guid: e937272f487bb8842b2d44561be26d1d, type: 3}
+  - {fileID: 4543469896964903039, guid: 1b015f0b9a094d840874ea51a14afc9c, type: 3}
+  - {fileID: -6418456975303262909, guid: 4d70007c1dbca3b4aa2591dee3308e31, type: 3}
+  - {fileID: 6012047872447985579, guid: 1aef218c638c11f4696d59000fbd8423, type: 3}
+  - {fileID: -4864638917385896486, guid: bd3ddf52a4a4d624c84f72f9742a8b5b, type: 3}
+  - {fileID: 5565228721409994327, guid: 7a7e5f17afea3044495df587cef7a9a1, type: 3}
+  - {fileID: 6914631558163089526, guid: c28c06a584af19d44b23edc9be016cf9, type: 3}
+  - {fileID: 1633154722831746290, guid: 0b7ca7d3e1e599542b203d05683ea8d0, type: 3}
+  WorldParent: {fileID: 1137376966}
   playerControllerPrefab: {fileID: 4098006019169827559, guid: fefd5b70b5d2c5c40985737d668224eb,
     type: 3}
   goalControllerPrefab: {fileID: 1300680543057255744, guid: 196c1f4b5a234ef4cb703bfd45c18925,
     type: 3}
   soundWaveControllerPrefab: {fileID: 6801793016639110317, guid: 5f54300b5e96a4a40b614d5d5921dc19,
     type: 3}
+  soundWaveParent: {fileID: 129683632}
   mainCameraController: {fileID: 589147929}
 --- !u!4 &207263975
 Transform:
@@ -294,7 +342,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 129683633}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -307,7 +356,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1751230219}
-  - component: {fileID: 1751230218}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -315,36 +363,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1751230218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751230217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44390070c814f68498121eadf834ffa7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CaseColliders:
-  - {fileID: 7850693579357757872, guid: 7125bca320d22fd4f84b7cbfea9b5bd0, type: 3}
-  - {fileID: 5843289863643487759, guid: fd28f9437682a284ea891e0ac97519f5, type: 3}
-  - {fileID: 3717293250043622656, guid: 5e9f943e1ca0dc84596594265717b6a7, type: 3}
-  - {fileID: 1903598961087044867, guid: e05882c3b0c0fef4a88d6ab32c3d88f7, type: 3}
-  - {fileID: 7621718291261662988, guid: 64f6375e5be2ed54ebe2f4a9b457ff67, type: 3}
-  - {fileID: 8255111911934396358, guid: 1754164272fbdc94383fea33b1da1330, type: 3}
-  - {fileID: 7713984624843339939, guid: 3db641c4d4b18be4192a2732cda9b83c, type: 3}
-  - {fileID: 3814818114391976327, guid: 6e1423f1999d593429479b4e70265111, type: 3}
-  - {fileID: 9064758533706298975, guid: e937272f487bb8842b2d44561be26d1d, type: 3}
-  - {fileID: 1439508751527836943, guid: 1b015f0b9a094d840874ea51a14afc9c, type: 3}
-  - {fileID: 8053318935745598875, guid: 4d70007c1dbca3b4aa2591dee3308e31, type: 3}
-  - {fileID: 920605054438347902, guid: 1aef218c638c11f4696d59000fbd8423, type: 3}
-  - {fileID: 1190698615868483607, guid: bd3ddf52a4a4d624c84f72f9742a8b5b, type: 3}
-  - {fileID: 6234222570934810935, guid: 7a7e5f17afea3044495df587cef7a9a1, type: 3}
-  - {fileID: 4032726164486603842, guid: c28c06a584af19d44b23edc9be016cf9, type: 3}
-  - {fileID: 5180059764409842835, guid: 0b7ca7d3e1e599542b203d05683ea8d0, type: 3}
-  WorldParent: {fileID: 1137376966}
 --- !u!4 &1751230219
 Transform:
   m_ObjectHideFlags: 0

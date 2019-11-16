@@ -9,6 +9,8 @@ namespace IAmHere.Game
         [SerializeField] private float max_time_alive_ = 1.0f;
         [SerializeField] private TrailRenderer TrailRenderer = null;
 
+        public WorldEntityController originEntity;
+        
         private float time_alive_ = 0.0f;
 
         public Rigidbody2D GetRigidbody()

@@ -10,14 +10,12 @@ namespace IAmHere.UnitTests
     [TestFixture]
     public class MarchingSquaresTest
     {
-        private GameObject go = null;
         private MarchingSquares marchingSquares = null;
 
         [SetUp]
         public void SetupMarchingSquaresTest()
         {
-            go = new GameObject();
-            marchingSquares = go.AddComponent<MarchingSquares>();
+            marchingSquares = new MarchingSquares();
         }
 
         [Test]
