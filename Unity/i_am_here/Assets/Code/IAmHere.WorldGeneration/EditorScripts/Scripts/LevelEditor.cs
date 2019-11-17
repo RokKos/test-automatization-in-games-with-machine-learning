@@ -126,6 +126,18 @@ namespace IAmHere.WorldGeneration
                         level.board.Length != level.rows * level.columns)
                     {
                         level.board = new Square[level.rows * level.columns];
+                        for (int y = 0; y < level.rows; ++y)
+                        {
+                            
+                            for (int x = 0; x < level.columns; ++x)
+                            {
+                                int index = y * level.rows + x;
+                                if (y == 0 || y == level.rows - 1 || x == 0 || x == level.columns - 1)
+                                {
+                                    level.board[index] = Square.kWall;
+                                }
+                            }
+                        }
                     }
 
                     EditorGUILayout.BeginHorizontal();
