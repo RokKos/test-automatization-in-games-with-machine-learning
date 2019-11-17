@@ -64,7 +64,7 @@ namespace IAmHere.WorldGeneration
                     ColliderController collider = Instantiate(CaseColliders[res[y, x]], new Vector3(x, -y, 0), Quaternion.identity, row.transform);
                     collider.onBurst += Burst;
                     levelColliders.Add(collider);
-                    
+                    collider.name = "y: " + y + " x: " + x;
                 }
             }
 
@@ -91,6 +91,7 @@ namespace IAmHere.WorldGeneration
                                 new Vector3(y - 0.5f, -x + 0.5f, 0), Quaternion.identity, WorldParent.transform);
                             _playerController.onBurst += Burst;
                             _playerController.onPlayerDead += GameOver;
+                            _playerController.onLevelClear += NextLevel;
                             break;
                         }
                         case Square.kEnd:
@@ -115,6 +116,12 @@ namespace IAmHere.WorldGeneration
         public Level GetCurrLevel()
         {
             return Levels.levels[levelIndex];
+        }
+        
+        private void NextLevel()
+        {
+            levelIndex++;
+            mainUiController.StartTransition(Color.white);
         }
         
         private void Burst(WorldEntityController entity, Vector3 position, Gradient gradient, bool fadeTrails, int burstSeparationAngle, int bursOffsetAngle, float burstOffsetVector,

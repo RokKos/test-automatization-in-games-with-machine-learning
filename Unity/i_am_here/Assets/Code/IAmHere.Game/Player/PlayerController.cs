@@ -14,8 +14,10 @@ namespace IAmHere.Game
     {
 
         public delegate void OnPlayerDead(WorldEntityController killingEntity);
-
         public OnPlayerDead onPlayerDead;
+        
+        public delegate void OnLevelClear();
+        public OnLevelClear onLevelClear;
         
         [Range(0.0f, 5.0f)] [SerializeField] private float nextBurstTime = 0.3f;
         [Range(0.0f, 100.0f)] [SerializeField] protected float movementCoeficient = 0.1f;
@@ -90,7 +92,7 @@ namespace IAmHere.Game
         {
             if (other.gameObject.tag == "Goal")
             {
-                // Handled in GoalController
+                onLevelClear();
                 return;
             }
 
