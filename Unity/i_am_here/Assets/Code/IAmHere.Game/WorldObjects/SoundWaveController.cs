@@ -11,11 +11,15 @@ namespace IAmHere.Game
         private WorldEntityController _originEntity;
         private float _maxTimeAlive = 0;
         private float _timeAlive = 0.0f;
+        private bool _fadeTrails = true;
 
-        public void Init(WorldEntityController originEntity, float maxTimeAlive)
+        public void Init(WorldEntityController originEntity, float maxTimeAlive, Gradient gradient, bool fadeTrails, Vector2 dir, float forceStrenght)
         {
             _originEntity = originEntity;
             _maxTimeAlive = maxTimeAlive;
+            TrailRenderer.colorGradient = gradient;
+            _fadeTrails = fadeTrails;
+            rigidbody_.AddForce(dir * forceStrenght, ForceMode2D.Impulse);
         }
 
         public Rigidbody2D GetRigidbody()
@@ -43,15 +47,13 @@ namespace IAmHere.Game
                 Destroy(this.gameObject);
             }
 
-            float procentOfAlivnes = 1 - _timeAlive / _maxTimeAlive;
-            SetOpacityOfTrail(procentOfAlivnes);
+            if (_fadeTrails)
+            {
+                float procentOfAlivnes = 1 - _timeAlive / _maxTimeAlive;
+                SetOpacityOfTrail(procentOfAlivnes);
+            }
         }
 
-        public void SetLineColor(Color startColor)
-        {
-            TrailRenderer.startColor = startColor;
-        }
-        
         private void SetOpacityOfTrail(float alpha)
         {
             Color startColor = TrailRenderer.startColor;

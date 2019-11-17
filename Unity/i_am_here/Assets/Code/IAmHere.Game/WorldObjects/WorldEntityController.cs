@@ -8,7 +8,7 @@ namespace IAmHere.Game
     [RequireComponent(typeof(Rigidbody2D))]
     public class WorldEntityController : MonoBehaviour
     {
-        public delegate void OnBurst(WorldEntityController entity, Vector3 position, Color color, int burstSeparationAngle, int bursOffsetAngle, float burstOffsetVector,
+        public delegate void OnBurst(WorldEntityController entity, Vector3 position, Gradient gradient, bool fadeTrails, int burstSeparationAngle, int bursOffsetAngle, float burstOffsetVector,
             float forceStrenght, float maxTimeAlive);
         public OnBurst onBurst;
         
@@ -17,6 +17,9 @@ namespace IAmHere.Game
         [Range(0.0f, 1.0f)] [SerializeField] protected float burstOffsetVector = 0.2f;
         [Range(0.0f, 100.0f)] [SerializeField] protected float forceStrenght = 3f;
         [Range(0.0f, 10.0f)] [SerializeField] protected float maxTimeAlive = 1.0f;
+        [SerializeField] protected Gradient gradient = null;
+        [SerializeField] protected bool fadeTrails = true;
+        
 
 
         protected virtual void OnCollisionEnter2D(Collision2D other)
