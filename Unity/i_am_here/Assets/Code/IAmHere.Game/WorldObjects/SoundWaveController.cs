@@ -42,12 +42,33 @@ namespace IAmHere.Game
                 // TODO(Rok Kos): Pooling
                 Destroy(this.gameObject);
             }
+
+            float procentOfAlivnes = 1 - _timeAlive / _maxTimeAlive;
+            SetOpacityOfTrail(procentOfAlivnes);
         }
 
         public void SetLineColor(Color startColor)
         {
             TrailRenderer.startColor = startColor;
         }
+        
+        private void SetOpacityOfTrail(float alpha)
+        {
+            Color startColor = TrailRenderer.startColor;
+            startColor.a = alpha;
+            TrailRenderer.startColor = startColor;
+            
+            Color endColor = TrailRenderer.endColor;
+            endColor.a = alpha;
+            TrailRenderer.endColor = endColor;
+        }
+
+        public WorldEntityController GetOriginEntity()
+        {
+            return _originEntity;
+        }
+
+        
 
 
     }
