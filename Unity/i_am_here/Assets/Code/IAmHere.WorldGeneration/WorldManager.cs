@@ -41,14 +41,8 @@ namespace IAmHere.WorldGeneration
 
         void Start()
         {
-            _soundWaveControllers = new List<SoundWaveController>();
-            levelColliders = new List<ColliderController>();
-            Level level = Levels.levels[levelIndex];
-            CreateGrid(marchingSquares.ParseGrid(marchingSquares.ConvertLevelToGrid(level)));
-            SpawnEntities();
-            mainCameraController.Init(level.columns, level.rows);
-            mainUiController.onTransitionOver += LoadNewLevel;
-            
+            mainUiController.onTransitionOver += Reset;
+            LoadNewLevel();
         }
 
         public void CreateGrid(byte[,] res)
@@ -154,9 +148,32 @@ namespace IAmHere.WorldGeneration
             mainUiController.StartTransition(Color.red);
         }
         
+        private void ClearOldLevel() {
+            foreach (var soundWaveController in _soundWaveControllers)
+            {
+                Destroy(soundWaveController.gameObject);   
+            }
+            
+            foreach (var levelCollider in levelColliders)
+            {
+                Destroy(levelCollider.gameObject);   
+            }
+            Destroy(_playerController.gameObject);
+            Destroy(_goalController.gameObject);
+        }
+        
         private void LoadNewLevel() {
-            Debug.Log("Loading: " + SceneManager.GetActiveScene().name);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            _soundWaveControllers = new List<SoundWaveController>();
+            levelColliders = new List<ColliderController>();
+            Level level = Levels.levels[levelIndex];
+            CreateGrid(marchingSquares.ParseGrid(marchingSquares.ConvertLevelToGrid(level)));
+            SpawnEntities();
+            mainCameraController.Init(level.columns, level.rows);
+        }
+        
+        private void Reset() {
+            ClearOldLevel();
+            LoadNewLevel();
         }
     }
 }

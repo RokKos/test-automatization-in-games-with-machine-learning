@@ -105,6 +105,5 @@ namespace IAmHere.Game
                 playerState = PlayerState.kPlayerHurt;
             }
         }
-
     }
 }
