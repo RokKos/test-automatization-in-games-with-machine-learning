@@ -9,7 +9,7 @@ namespace IAmHere.Game
             if (other.gameObject.tag == "Player")
             {
                 // TODO(Rok Kos): Create action to game manager that is level cleared
-                onBurst(this, transform.position, Color.red, burstSeparationAngle, bursOffsetAngle, burstOffsetVector, forceStrenght);
+                onBurst(this, transform.position, Color.red, burstSeparationAngle, bursOffsetAngle, burstOffsetVector, forceStrenght, maxTimeAlive);
                 Debug.Log("Player Dead");
             }
         }

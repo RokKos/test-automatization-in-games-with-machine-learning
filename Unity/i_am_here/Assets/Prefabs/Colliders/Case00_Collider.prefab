@@ -49,6 +49,7 @@ MonoBehaviour:
   bursOffsetAngle: 5
   burstOffsetVector: 0.2
   forceStrenght: 14
+  maxTimeAlive: 1.44
 --- !u!61 &7114525718703452835
 BoxCollider2D:
   m_ObjectHideFlags: 0

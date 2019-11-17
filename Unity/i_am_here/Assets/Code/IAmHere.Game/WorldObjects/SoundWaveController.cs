@@ -6,12 +6,17 @@ namespace IAmHere.Game
     {
         [SerializeField] private Rigidbody2D rigidbody_ = null;
         [SerializeField] private CircleCollider2D collider_ = null;
-        [SerializeField] private float max_time_alive_ = 1.0f;
         [SerializeField] private TrailRenderer TrailRenderer = null;
 
-        public WorldEntityController originEntity;
-        
-        private float time_alive_ = 0.0f;
+        private WorldEntityController _originEntity;
+        private float _maxTimeAlive = 0;
+        private float _timeAlive = 0.0f;
+
+        public void Init(WorldEntityController originEntity, float maxTimeAlive)
+        {
+            _originEntity = originEntity;
+            _maxTimeAlive = maxTimeAlive;
+        }
 
         public Rigidbody2D GetRigidbody()
         {
@@ -26,13 +31,13 @@ namespace IAmHere.Game
 
         private void Start()
         {
-            time_alive_ = 0.0f;
+            _timeAlive = 0.0f;
         }
 
         private void Update()
         {
-            time_alive_ += Time.deltaTime;
-            if (time_alive_ > max_time_alive_)
+            _timeAlive += Time.deltaTime;
+            if (_timeAlive > _maxTimeAlive)
             {
                 // TODO(Rok Kos): Pooling
                 Destroy(this.gameObject);

@@ -118,7 +118,7 @@ namespace IAmHere.WorldGeneration
         }
         
         private void Burst(WorldEntityController entity, Vector3 position, Color color, int burstSeparationAngle, int bursOffsetAngle, float burstOffsetVector,
-            float forceStrenght)
+            float forceStrenght, float maxTimeAlive)
         {
             for (int angle = 0; angle < 360; angle += burstSeparationAngle)
             {
@@ -129,9 +129,9 @@ namespace IAmHere.WorldGeneration
                     Instantiate(soundWaveControllerPrefab,
                         position + new Vector3(dir.x, dir.y, 0) * burstOffsetVector, Quaternion.identity,
                         soundWaveParent.transform);
+                soundWaveController.Init(entity, maxTimeAlive);
                 soundWaveController.GetRigidbody().AddForce(dir * forceStrenght, ForceMode2D.Impulse);
                 soundWaveController.SetLineColor(color);
-                soundWaveController.originEntity = entity;
             }
 
         }
@@ -140,7 +140,7 @@ namespace IAmHere.WorldGeneration
         {
             foreach (var soundWaveController in _soundWaveControllers)
             {
-                if (soundWaveController.originEntity != killingEntity)
+                if (soundWaveController.GetOriginEntity() != killingEntity)
                 {
                     soundWaveController.GetRigidbody().velocity = Vector2.zero;
                 }

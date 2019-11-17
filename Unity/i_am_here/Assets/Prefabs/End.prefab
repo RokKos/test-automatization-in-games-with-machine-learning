@@ -49,7 +49,7 @@ MonoBehaviour:
   bursOffsetAngle: 5
   burstOffsetVector: 0.2
   forceStrenght: 17.9
-  movementCoeficient: 0.1
+  maxTimeAlive: 2.02
 --- !u!58 &1300680543057255747
 CircleCollider2D:
   m_ObjectHideFlags: 0

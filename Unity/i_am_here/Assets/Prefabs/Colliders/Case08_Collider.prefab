@@ -98,3 +98,4 @@ MonoBehaviour:
   bursOffsetAngle: 5
   burstOffsetVector: 0.2
   forceStrenght: 14
+  maxTimeAlive: 1.44

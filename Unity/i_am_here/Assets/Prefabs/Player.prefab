@@ -49,8 +49,9 @@ MonoBehaviour:
   bursOffsetAngle: 5
   burstOffsetVector: 0.2
   forceStrenght: 8
-  movementCoeficient: 0.1
+  maxTimeAlive: 0.6
   nextBurstTime: 0.3
+  movementCoeficient: 0.1
 --- !u!50 &7557318885044631426
 Rigidbody2D:
   serializedVersion: 4

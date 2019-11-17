@@ -40,7 +40,7 @@ namespace IAmHere.Game
                 case PlayerState.kPlayerMoved:
                     if (burstTimer > nextBurstTime)
                     {
-                        onBurst(this, transform.position, Color.white, burstSeparationAngle, bursOffsetAngle, burstOffsetVector, forceStrenght);
+                        onBurst(this, transform.position, Color.white, burstSeparationAngle, bursOffsetAngle, burstOffsetVector, forceStrenght, maxTimeAlive);
                         burstTimer = 0.0f;
                     }
 
