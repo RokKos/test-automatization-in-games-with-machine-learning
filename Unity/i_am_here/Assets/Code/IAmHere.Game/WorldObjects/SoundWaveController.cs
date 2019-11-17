@@ -39,10 +39,9 @@ namespace IAmHere.Game
             }
         }
 
-        public void SetLineColor(Color color)
+        public void SetLineColor(Color startColor)
         {
-            TrailRenderer.startColor = color;
-            TrailRenderer.endColor = color;
+            TrailRenderer.startColor = startColor;
         }
 
 

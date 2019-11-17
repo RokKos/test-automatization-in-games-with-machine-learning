@@ -48,7 +48,7 @@ MonoBehaviour:
   burstSeparationAngle: 20
   bursOffsetAngle: 5
   burstOffsetVector: 0.2
-  forceStrenght: 3
+  forceStrenght: 14
 --- !u!61 &7114525718703452835
 BoxCollider2D:
   m_ObjectHideFlags: 0
