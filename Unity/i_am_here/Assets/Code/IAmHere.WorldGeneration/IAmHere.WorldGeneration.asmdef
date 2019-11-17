@@ -1,7 +1,8 @@
 {
     "name": "IAmHere.WorldGeneration",
     "references": [
-        "GUID:79bfcea5e67c5364a894388d98617dda"
+        "GUID:79bfcea5e67c5364a894388d98617dda",
+        "GUID:b6ebe590ffc78d24bbe064675faf45c2"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

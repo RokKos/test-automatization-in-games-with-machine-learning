@@ -10,7 +10,6 @@ namespace IAmHere.Game
     {
         public delegate void OnBurst(WorldEntityController entity, Vector3 position, Color color, int burstSeparationAngle, int bursOffsetAngle, float burstOffsetVector,
             float forceStrenght);
-
         public OnBurst onBurst;
         
         [Range(1, 360)] [SerializeField] protected int burstSeparationAngle = 20;

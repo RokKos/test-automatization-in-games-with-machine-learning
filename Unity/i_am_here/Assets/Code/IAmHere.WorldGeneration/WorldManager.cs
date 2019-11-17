@@ -1,7 +1,12 @@
 ﻿using System;
+
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 using IAmHere.Game;
+using IAmHere.UI;
+
 
 namespace IAmHere.WorldGeneration
 {
@@ -30,6 +35,9 @@ namespace IAmHere.WorldGeneration
         
         [Header("Camera")]
         [SerializeField] private MainCameraController mainCameraController = null;
+        
+        [Header("UI")]
+        [SerializeField] private MainUIController mainUiController = null;
 
         void Start()
         {
@@ -39,7 +47,7 @@ namespace IAmHere.WorldGeneration
             CreateGrid(marchingSquares.ParseGrid(marchingSquares.ConvertLevelToGrid(level)));
             SpawnEntities();
             mainCameraController.Init(level.columns, level.rows);
-
+            mainUiController.onTransitionOver += LoadNewLevel;
             
         }
 
@@ -137,6 +145,13 @@ namespace IAmHere.WorldGeneration
                     soundWaveController.GetRigidbody().velocity = Vector2.zero;
                 }
             }
+            
+            mainUiController.StartTransition(Color.red);
+        }
+        
+        private void LoadNewLevel() {
+            Debug.Log("Loading: " + SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
