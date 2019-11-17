@@ -140,6 +140,8 @@ namespace IAmHere.WorldGeneration
                         }
                     }
 
+                    bool isDirty = false;
+                    
                     EditorGUILayout.BeginHorizontal();
                     for (int x = 0; x < level.columns; ++x)
                     {
@@ -148,7 +150,14 @@ namespace IAmHere.WorldGeneration
                         {
                             EditorGUILayout.BeginHorizontal();
                             int index = y * level.columns + x;
-                            level.board[index] = (Square) EditorGUILayout.EnumPopup(level.board[index]);
+                            Square editorValue = (Square) EditorGUILayout.EnumPopup(level.board[index]);
+                            
+                            if (level.board[index] != editorValue)
+                            {
+                                isDirty = true;
+                            }
+
+                            level.board[index] = editorValue;
                             EditorGUILayout.EndHorizontal();
                         }
 
@@ -156,19 +165,13 @@ namespace IAmHere.WorldGeneration
                     }
 
                     EditorGUILayout.EndHorizontal();
-
-                    //
-
-
                     GUILayout.Space(10);
 
-                    //GUILayout.BeginHorizontal ();
-                    //inventoryItemList.itemList[viewIndex-1].isUnique = (bool)EditorGUILayout.Toggle("Unique", inventoryItemList.itemList[viewIndex-1].isUnique, GUILayout.ExpandWidth(false));
-                    //inventoryItemList.itemList[viewIndex-1].isIndestructible = (bool)EditorGUILayout.Toggle("Indestructable", inventoryItemList.itemList[viewIndex-1].isIndestructible,  GUILayout.ExpandWidth(false));
-                    //inventoryItemList.itemList[viewIndex-1].isQuestItem = (bool)EditorGUILayout.Toggle("QuestItem", inventoryItemList.itemList[viewIndex-1].isQuestItem,  GUILayout.ExpandWidth(false));
-                    //GUILayout.EndHorizontal ();
-
-                    //GUILayout.Space(10);
+                    if (isDirty)
+                    {
+                        EditorUtility.SetDirty(level);
+                        AssetDatabase.SaveAssets();
+                    }
 
                 }
                 else
@@ -180,6 +183,7 @@ namespace IAmHere.WorldGeneration
             if (GUI.changed)
             {
                 EditorUtility.SetDirty(inventoryItemList);
+                AssetDatabase.SaveAssets();
             }
         }
 
