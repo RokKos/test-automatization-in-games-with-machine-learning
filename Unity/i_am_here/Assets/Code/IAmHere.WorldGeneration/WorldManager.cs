@@ -80,7 +80,7 @@ namespace IAmHere.WorldGeneration
             {
                 for (int x = 0; x < level.columns; ++x)
                 {
-                    int index = y * level.rows + x;
+                    int index = y * level.columns + x;
 
                     switch (level.board[index])
                     {
@@ -88,7 +88,7 @@ namespace IAmHere.WorldGeneration
                         {
                             // TODO(Rok Kos): Unsibsribe from delegate
                             _playerController = Instantiate(playerControllerPrefab,
-                                new Vector3(y - 0.5f, -x + 0.5f, 0), Quaternion.identity, WorldParent.transform);
+                                new Vector3(x - 0.5f,-y + 0.5f , 0), Quaternion.identity, WorldParent.transform);
                             _playerController.onBurst += Burst;
                             _playerController.onPlayerDead += GameOver;
                             _playerController.onLevelClear += NextLevel;
@@ -98,7 +98,7 @@ namespace IAmHere.WorldGeneration
                         {
                             // TODO(Rok Kos): Unsibsribe from delegate
                             _goalController = Instantiate(goalControllerPrefab,
-                                new Vector3(y - 0.5f, -x + 0.5f, 0), Quaternion.identity, WorldParent.transform);
+                                new Vector3(x - 0.5f,-y + 0.5f , 0), Quaternion.identity, WorldParent.transform);
                             _goalController.onBurst += Burst;  
                             break;
                         }

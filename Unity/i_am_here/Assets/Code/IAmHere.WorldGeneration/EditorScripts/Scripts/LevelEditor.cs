@@ -121,7 +121,7 @@ namespace IAmHere.WorldGeneration
                     Level level = inventoryItemList.levels[viewIndex - 1];
 
                     level.rows = EditorGUILayout.IntField("Rows", level.rows);
-                    level.columns = EditorGUILayout.IntField("Rows", level.columns);
+                    level.columns = EditorGUILayout.IntField("Columns", level.columns);
                     if (level.board == null || level.board.Length == 0 ||
                         level.board.Length != level.rows * level.columns)
                     {
@@ -131,7 +131,7 @@ namespace IAmHere.WorldGeneration
                             
                             for (int x = 0; x < level.columns; ++x)
                             {
-                                int index = y * level.rows + x;
+                                int index = y * level.columns + x;
                                 if (y == 0 || y == level.rows - 1 || x == 0 || x == level.columns - 1)
                                 {
                                     level.board[index] = Square.kWall;
@@ -141,13 +141,13 @@ namespace IAmHere.WorldGeneration
                     }
 
                     EditorGUILayout.BeginHorizontal();
-                    for (int y = 0; y < level.rows; ++y)
+                    for (int x = 0; x < level.columns; ++x)
                     {
                         GUILayout.BeginVertical();
-                        for (int x = 0; x < level.columns; ++x)
+                        for (int y = 0; y < level.rows; ++y)
                         {
                             EditorGUILayout.BeginHorizontal();
-                            int index = y * level.rows + x;
+                            int index = y * level.columns + x;
                             level.board[index] = (Square) EditorGUILayout.EnumPopup(level.board[index]);
                             EditorGUILayout.EndHorizontal();
                         }

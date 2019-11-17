@@ -70,13 +70,13 @@ namespace IAmHere.WorldGeneration
             {
                 for (int x = 0; x < level.columns; x++)
                 {
-                    if (level.board[y * level.rows + x] == Square.kWall)
+                    if (level.board[y * level.columns + x] == Square.kWall)
                     {
-                        grid[x, y] = true;
+                        grid[y, x] = true;
                     }
                     else
                     {
-                        grid[x, y] = false;
+                        grid[y, x] = false;
                     }
                 }
             }
