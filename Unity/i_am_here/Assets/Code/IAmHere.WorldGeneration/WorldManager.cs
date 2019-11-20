@@ -20,18 +20,20 @@ namespace IAmHere.WorldGeneration
 
 
         readonly MarchingSquares marchingSquares = new MarchingSquares();
-        private int levelIndex = 0;
+        private int levelIndex = 4;
         private List<ColliderController> levelColliders = null;
 
         [Header("Player")] 
         [SerializeField] private PlayerController playerControllerPrefab = null;
         [SerializeField] private GoalController goalControllerPrefab = null;
+        [SerializeField] private EnemyController enemyControllerPrefab = null;
         [SerializeField] private SoundWaveController soundWaveControllerPrefab = null;
         [SerializeField] private GameObject soundWaveParent = null;
 
         private PlayerController _playerController = null;
         private GoalController _goalController = null;
         private List<SoundWaveController> _soundWaveControllers = null;
+        private List<EnemyController> _enemyControllers = null;
         
         [Header("Camera")]
         [SerializeField] private MainCameraController mainCameraController = null;
@@ -98,6 +100,16 @@ namespace IAmHere.WorldGeneration
                         }
 
                         case Square.kEnemy:
+                        {
+                              
+                            EnemyController enemyController = Instantiate(enemyControllerPrefab,
+                                new Vector3(x - 0.5f,-y + 0.5f , 0), Quaternion.identity, WorldParent.transform);
+                            enemyController.Init(_playerController);
+                            enemyController.onBurst += Burst;  
+                            _enemyControllers.Add(enemyController);
+                            break;
+                        }
+                        
                         case Square.kEmtpy:
                         default:
                             continue;
@@ -172,6 +184,14 @@ namespace IAmHere.WorldGeneration
                 }
             }
             
+            foreach (var enemyController in _enemyControllers)
+            {
+                if (enemyController != null)
+                {
+                    Destroy(enemyController.gameObject);    
+                }
+            }
+            
             foreach (var levelCollider in levelColliders)
             {
                 levelCollider.onBurst -= Burst;
@@ -188,6 +208,7 @@ namespace IAmHere.WorldGeneration
         
         private void LoadNewLevel() {
             _soundWaveControllers = new List<SoundWaveController>();
+            _enemyControllers = new List<EnemyController>();
             levelColliders = new List<ColliderController>();
             Level level = GetCurrLevel();
             CreateGrid(marchingSquares.ParseGrid(marchingSquares.ConvertLevelToGrid(level)));

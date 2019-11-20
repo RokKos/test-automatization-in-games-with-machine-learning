@@ -202,6 +202,8 @@ MonoBehaviour:
     type: 3}
   goalControllerPrefab: {fileID: 1300680543057255744, guid: 196c1f4b5a234ef4cb703bfd45c18925,
     type: 3}
+  enemyControllerPrefab: {fileID: 1155969771824887608, guid: 5b47f9a2637cc45419b16d07acfa61c9,
+    type: 3}
   soundWaveControllerPrefab: {fileID: 6801793016639110317, guid: 5f54300b5e96a4a40b614d5d5921dc19,
     type: 3}
   soundWaveParent: {fileID: 129683632}
