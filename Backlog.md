@@ -38,7 +38,9 @@
  - [ ] https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Create-New.md
  - [ ] https://www.youtube.com/playlist?list=PLX2vGYjWbI0R08eWQkO7nQkGiicHAX7IX
 
-
+- [ ] https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Getting-Started-with-Balance-Ball.md
+- [ ] https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Feature-Monitor.md
+- [ ] https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-ML-Agents.md
 
 ## eprints.fri
 - [] http://eprints.fri.uni-lj.si/3054/1/63110060-TADEJ_GOLOBI%C4%8C-Program_za_avtomatsko_preverjanje_algoritmov_napisanih_v_programskem_jeziku_C%2B%2B.pdf
@@ -81,8 +83,14 @@ behaviour of an expert
  - [x] https://www.youtube.com/watch?v=5P7I-xPq8u8
  - [ ] https://www.youtube.com/watch?v=0Ey02HT_1Ho
  - [ ] https://www.youtube.com/watch?v=JgvyzIkgxF0
+ - [ ] https://openai.com/blog/openai-baselines-ppo/
+ - [ ] https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-PPO.md
 
  ## Unity ML Toolkit
  - [] https://arxiv.org/abs/1809.02627
- - [] https://arxiv.org/abs/1707.06347
+ - [] https://arxiv.org/abs/1707.06347 -> Proximal Policy Optimization
  - [] https://arxiv.org/abs/1502.05477
+
+## Soft Actor Critic
+- [ ] https://bair.berkeley.edu/blog/2018/12/14/sac/
+- [ ] https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-SAC.md
