@@ -4,6 +4,9 @@ namespace IAmHere.Game
 {
     public class SoundWaveController : MonoBehaviour
     {
+        public delegate void OnDestroy(SoundWaveController entity);
+        public OnDestroy onDestroy;
+        
         [SerializeField] private Rigidbody2D rigidbody_ = null;
         [SerializeField] private CircleCollider2D collider_ = null;
         [SerializeField] private TrailRenderer TrailRenderer = null;
@@ -43,6 +46,7 @@ namespace IAmHere.Game
             _timeAlive += Time.deltaTime;
             if (_timeAlive > _maxTimeAlive)
             {
+                onDestroy(this);
                 // TODO(Rok Kos): Pooling
                 Destroy(this.gameObject);
             }

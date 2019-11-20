@@ -80,7 +80,6 @@ namespace IAmHere.WorldGeneration
                     {
                         case Square.kStart:
                         {
-                            // TODO(Rok Kos): Unsibsribe from delegate
                             _playerController = Instantiate(playerControllerPrefab,
                                 new Vector3(x - 0.5f,-y + 0.5f , 0), Quaternion.identity, WorldParent.transform);
                             _playerController.onBurst += Burst;
@@ -90,7 +89,6 @@ namespace IAmHere.WorldGeneration
                         }
                         case Square.kEnd:
                         {
-                            // TODO(Rok Kos): Unsibsribe from delegate
                             _goalController = Instantiate(goalControllerPrefab,
                                 new Vector3(x - 0.5f,-y + 0.5f , 0), Quaternion.identity, WorldParent.transform);
                             _goalController.onBurst += Burst;  
@@ -131,7 +129,16 @@ namespace IAmHere.WorldGeneration
                         position + new Vector3(dir.x, dir.y, 0) * burstOffsetVector, Quaternion.identity,
                         soundWaveParent.transform);
                 soundWaveController.Init(entity, maxTimeAlive, gradient, fadeTrails, dir, forceStrenght);
+                soundWaveController.onDestroy += CleanSoundWave;
+                _soundWaveControllers.Add(soundWaveController);
             }
+
+        }
+
+        private void CleanSoundWave(SoundWaveController entity)
+        {
+            entity.onDestroy -= CleanSoundWave;
+            _soundWaveControllers.Remove(entity);
 
         }
 
@@ -139,7 +146,7 @@ namespace IAmHere.WorldGeneration
         {
             foreach (var soundWaveController in _soundWaveControllers)
             {
-                if (soundWaveController.GetOriginEntity() != killingEntity)
+                if (soundWaveController != null && soundWaveController.GetOriginEntity() != killingEntity)
                 {
                     soundWaveController.GetRigidbody().velocity = Vector2.zero;
                 }
@@ -151,21 +158,30 @@ namespace IAmHere.WorldGeneration
         private void ClearOldLevel() {
             foreach (var soundWaveController in _soundWaveControllers)
             {
-                Destroy(soundWaveController.gameObject);   
+                if (soundWaveController != null)
+                {
+                    Destroy(soundWaveController.gameObject);    
+                }
             }
             
             foreach (var levelCollider in levelColliders)
             {
+                levelCollider.onBurst -= Burst;
                 Destroy(levelCollider.gameObject);   
             }
+            _playerController.onBurst -= Burst;
+            _playerController.onPlayerDead -= GameOver;
+            _playerController.onLevelClear -= NextLevel;
             Destroy(_playerController.gameObject);
+            
+            _goalController.onBurst -= Burst;  
             Destroy(_goalController.gameObject);
         }
         
         private void LoadNewLevel() {
             _soundWaveControllers = new List<SoundWaveController>();
             levelColliders = new List<ColliderController>();
-            Level level = Levels.levels[levelIndex];
+            Level level = GetCurrLevel();
             CreateGrid(marchingSquares.ParseGrid(marchingSquares.ConvertLevelToGrid(level)));
             SpawnEntities();
             mainCameraController.Init(level.columns, level.rows);
