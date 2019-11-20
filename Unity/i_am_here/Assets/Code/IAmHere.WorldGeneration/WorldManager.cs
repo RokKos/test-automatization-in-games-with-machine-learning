@@ -220,5 +220,38 @@ namespace IAmHere.WorldGeneration
             ClearOldLevel();
             LoadNewLevel();
         }
+
+        private List<Vector2> GetEmptyCoordinates()
+        {
+            List<Vector2> emptyCoordinates = new List<Vector2>();
+            Level level = GetCurrLevel();
+            for (int y = 0; y < level.rows; ++y)
+            {
+                for (int x = 0; x < level.columns; ++x)
+                {
+                    int index = GetGridIndex(level.columns, y, x);
+                    if (level.board[index] == Square.kEmtpy)
+                    {
+                        emptyCoordinates.Add(new Vector2(x, -y));
+                    }
+                }
+            }
+
+            return emptyCoordinates;
+        }
+
+        public Vector2 GetRandomEmptyCoordinate(bool playerEntity = true)
+        {
+            List<Vector2> emptyCoordinates = GetEmptyCoordinates();
+            int index = random.Next(emptyCoordinates.Count);
+            Vector2 emptyCoordinate = emptyCoordinates[index];
+            
+            if (playerEntity)
+            {
+                emptyCoordinate += new Vector2(-0.5f, 0.5f);
+            }
+
+            return emptyCoordinate;
+        }
     }
 }
