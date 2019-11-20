@@ -1,0 +1,14 @@
+{
+    "name": "IAmHere.MachineLearning",
+    "references": [
+        "GUID:667c6170348beac408154987c87b19a8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
