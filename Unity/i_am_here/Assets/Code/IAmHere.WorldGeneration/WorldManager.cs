@@ -38,6 +38,8 @@ namespace IAmHere.WorldGeneration
         
         [Header("UI")]
         [SerializeField] private MainUIController mainUiController = null;
+        
+        static System.Random random = new System.Random();
 
         void Start()
         {
@@ -74,7 +76,7 @@ namespace IAmHere.WorldGeneration
             {
                 for (int x = 0; x < level.columns; ++x)
                 {
-                    int index = y * level.columns + x;
+                    int index = GetGridIndex(level.columns, y, x);
 
                     switch (level.board[index])
                     {
@@ -109,7 +111,13 @@ namespace IAmHere.WorldGeneration
         {
             return Levels.levels[levelIndex];
         }
-        
+
+        // TODO(Rok Kos): Create helper class with this kind of functions
+        public static int GetGridIndex(int columns, int y, int x)
+        {
+            return y * columns + x;
+        }
+
         private void NextLevel()
         {
             levelIndex++;

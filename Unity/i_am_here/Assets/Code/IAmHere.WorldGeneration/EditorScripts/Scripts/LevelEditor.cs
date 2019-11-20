@@ -131,7 +131,7 @@ namespace IAmHere.WorldGeneration
                             
                             for (int x = 0; x < level.columns; ++x)
                             {
-                                int index = y * level.columns + x;
+                                int index = WorldManager.GetGridIndex(level.columns, y, x);
                                 if (y == 0 || y == level.rows - 1 || x == 0 || x == level.columns - 1)
                                 {
                                     level.board[index] = Square.kWall;
@@ -149,7 +149,7 @@ namespace IAmHere.WorldGeneration
                         for (int y = 0; y < level.rows; ++y)
                         {
                             EditorGUILayout.BeginHorizontal();
-                            int index = y * level.columns + x;
+                            int index = WorldManager.GetGridIndex(level.columns, y, x);
                             Square editorValue = (Square) EditorGUILayout.EnumPopup(level.board[index]);
                             
                             if (level.board[index] != editorValue)

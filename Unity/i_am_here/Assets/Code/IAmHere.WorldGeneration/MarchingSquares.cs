@@ -70,7 +70,7 @@ namespace IAmHere.WorldGeneration
             {
                 for (int x = 0; x < level.columns; x++)
                 {
-                    if (level.board[y * level.columns + x] == Square.kWall)
+                    if (level.board[WorldManager.GetGridIndex(level.columns, y, x)] == Square.kWall)
                     {
                         grid[y, x] = true;
                     }
