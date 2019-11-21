@@ -2,53 +2,39 @@
 
 namespace IAmHere.Game
 {
-    
-    enum EnemyState
-    {
-        kIdle,
-        kMoved,
-        kLast
-    }
-
-    public class EnemyController : WorldEntityController
+    public class EnemyController : MovingEntityController
     {
         
-        [Range(0.0f, 5.0f)] [SerializeField] private float nextBurstTime = 0.3f;
-        [Range(0.0f, 100.0f)] [SerializeField] protected float movementCoeficient = 0.1f;
         
         [Range(0.0f, 100.0f)] [SerializeField] protected float radiusOfFolowPlayer = 0.1f;
 
         private PlayerController _playerController;
-        private float _burstTimer = 0.0f;
-        private EnemyState _enemyState = EnemyState.kIdle;
         
         
         public void Init(PlayerController playerController)
         {
-            _burstTimer = 0.0f;
+            base.Init();
             _playerController = playerController;
 
         }
 
         // Update is called once per frame
-        void Update()
+        new void Update()
         {
-            if (_enemyState == EnemyState.kMoved && _burstTimer > nextBurstTime)
+            if (state == MovingState.kMoved && burstTimer > nextBurstTime)
             {
-                onBurst(this, transform.position, gradient, fadeTrails, burstSeparationAngle, bursOffsetAngle, burstOffsetVector, forceStrenght, maxTimeAlive);
-                _burstTimer = 0.0f;
+                ReleaseBurst();
             }
             
-            _enemyState = EnemyState.kIdle;
-            
-            _burstTimer += Time.deltaTime;
+            state = MovingState.kIdle;
+            burstTimer += Time.deltaTime;
 
             Vector2 dirToPlayer = MoveToPlayer();
             if (dirToPlayer.magnitude > radiusOfFolowPlayer)
             {
                 return;
             }
-            _enemyState = EnemyState.kMoved;
+            state = MovingState.kMoved;
             Vector2 normalizedDir = dirToPlayer.normalized;
             transform.position += new Vector3(normalizedDir.x, normalizedDir.y, 0) * movementCoeficient;
 

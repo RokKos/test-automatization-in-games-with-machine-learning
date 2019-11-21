@@ -2,15 +2,9 @@
 
 namespace IAmHere.Game
 {
-    enum PlayerState
-    {
-        kPlayerIdle,
-        kPlayerMoved,
-        kPlayerHurt,
-        kLast
-    }
+    
 
-    public class PlayerController : WorldEntityController
+    public class PlayerController : MovingEntityController
     {
 
         public delegate void OnPlayerDead(WorldEntityController killingEntity);
@@ -19,40 +13,18 @@ namespace IAmHere.Game
         public delegate void OnLevelClear();
         public OnLevelClear onLevelClear;
         
-        [Range(0.0f, 5.0f)] [SerializeField] private float nextBurstTime = 0.3f;
-        [Range(0.0f, 100.0f)] [SerializeField] protected float movementCoeficient = 0.1f;
-
-        private float burstTimer = 0.0f;
-
-        private PlayerState playerState = PlayerState.kPlayerIdle;
+        
         private bool playerDead = false;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            burstTimer = 0.0f;
-        }
-
         // Update is called once per frame
-        void Update()
-        {
+        void Update() {
 
-            switch (playerState)
+            if (state == MovingState.kMoved && burstTimer > nextBurstTime)
             {
-                case PlayerState.kPlayerMoved:
-                    if (burstTimer > nextBurstTime)
-                    {
-                        onBurst(this, transform.position, gradient, fadeTrails, burstSeparationAngle, bursOffsetAngle, burstOffsetVector, forceStrenght, maxTimeAlive);
-                        burstTimer = 0.0f;
-                    }
-
-                    break;
-                
-                default:
-                    break;
+                ReleaseBurst();
             }
 
-            playerState = PlayerState.kPlayerIdle;
+            state = MovingState.kIdle;
 
             if (playerDead)
             {
@@ -66,25 +38,25 @@ namespace IAmHere.Game
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 transform.position += Vector3.left * movementCoeficient;
-                playerState = PlayerState.kPlayerMoved;
+                state = MovingState.kMoved;
             }
 
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 transform.position += Vector3.right * movementCoeficient;
-                playerState = PlayerState.kPlayerMoved;
+                state = MovingState.kMoved;
             }
 
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 transform.position += Vector3.up * movementCoeficient;
-                playerState = PlayerState.kPlayerMoved;
+                state = MovingState.kMoved;
             }
 
             if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
                 transform.position += Vector3.down * movementCoeficient;
-                playerState = PlayerState.kPlayerMoved;
+                state = MovingState.kMoved;
             }
         }
 
@@ -102,7 +74,7 @@ namespace IAmHere.Game
                 // TODO(Rok Kos): Create action to game manager that is game over...
                 playerDead = true;
                 onPlayerDead(other.gameObject.GetComponent<WorldEntityController>());
-                playerState = PlayerState.kPlayerHurt;
+                state = MovingState.kHurt;
             }
         }
     }
