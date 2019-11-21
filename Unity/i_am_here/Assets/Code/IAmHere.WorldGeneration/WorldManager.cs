@@ -253,5 +253,15 @@ namespace IAmHere.WorldGeneration
 
             return emptyCoordinate;
         }
+
+        public Vector2 GetGoalPosition()
+        {
+            if (_goalController == null)
+            {
+                return Vector2.zero;
+            }
+
+            return _goalController.transform.position;
+        }
     }
 }
