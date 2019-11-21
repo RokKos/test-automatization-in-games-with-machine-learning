@@ -40,7 +40,7 @@ namespace IAmHere.Game
             }
         }
 
-        protected void MoveEntity(Vector2 dir)
+        public void MoveEntity(Vector2 dir)
         {
             if (dir != Vector2.zero)
             {
@@ -49,6 +49,16 @@ namespace IAmHere.Game
             
             transform.position += new Vector3(dir.x, dir.y, 0) * movementCoeficient;
             
+        }
+
+        public bool GetPlayerDead()
+        {
+            return playerDead;
+        }
+        
+        public bool GetPlayerWon()
+        {
+            return playerWon;
         }
 
     }

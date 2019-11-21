@@ -2,7 +2,6 @@
 
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
 using IAmHere.Game;
 using IAmHere.UI;
@@ -13,10 +12,12 @@ namespace IAmHere.WorldGeneration
 
     public class WorldManager : MonoBehaviour
     {
-        [Header("Level Generation")] 
+        [Header("Level Generation")]
+        [SerializeField] private bool isMLTraining = false;
         [SerializeField] private Levels Levels = null;
         [SerializeField] private List<ColliderController> CaseColliders = null;
         [SerializeField] private GameObject WorldParent = null;
+        
 
 
         readonly MarchingSquares marchingSquares = new MarchingSquares();
@@ -84,6 +85,11 @@ namespace IAmHere.WorldGeneration
                     {
                         case Square.kStart:
                         {
+                            if (isMLTraining)
+                            {
+                                break;
+                            }
+
                             _playerController = Instantiate(playerControllerPrefab,
                                 new Vector3(x - 0.5f,-y + 0.5f , 0), Quaternion.identity, WorldParent.transform);
                             _playerController.onBurst += Burst;

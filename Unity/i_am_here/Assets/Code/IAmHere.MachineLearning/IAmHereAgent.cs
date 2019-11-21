@@ -3,20 +3,13 @@ using UnityEngine;
 using MLAgents;
 using IAmHere.Managers;
 using IAmHere.Utilities;
+using IAmHere.Game;
 
 namespace IAmHere.MachineLearning
 {
     public class IAmHereAgent : Agent
     {
-
-        enum MoveInDirection
-        {
-            kStay = 0,
-            kLeft = 1,
-            kRight = 2,
-            kUp = 3,
-            kDown = 4
-        }
+        [SerializeField] private ControlableEntityController _controlableEntityController = null;
 
         public override void AgentReset()
         {
@@ -43,11 +36,21 @@ namespace IAmHere.MachineLearning
         public override void AgentAction(float[] vectorAction, string textAction)
         {    
             Debug.Log("Agent took action: " + textAction);
-            MoveInDirection movement = (MoveInDirection)Mathf.FloorToInt(vectorAction[0]);
-            //MoveAgent(movement);
+            int moveX = Mathf.FloorToInt(vectorAction[0]) - 1;
+            int moveY = Mathf.FloorToInt(vectorAction[1]) - 1;
+            _controlableEntityController.MoveEntity(new Vector2(moveX, moveY));
+
+            if (_controlableEntityController.GetPlayerDead())
+            {
+                SetReward(-1);
+            }
             
+            if (_controlableEntityController.GetPlayerWon())
+            {
+                SetReward(1);
+            }
             
-            // Reward
+            // Add also for distance
         }
     }
 }
