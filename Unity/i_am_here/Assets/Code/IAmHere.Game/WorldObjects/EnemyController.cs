@@ -42,6 +42,10 @@ namespace IAmHere.Game
 
         private Vector2 MoveToPlayer()
         {
+            if (_playerController == null) {
+                return Vector2.zero;
+            }
+        
             // Purposefully casting to Vector2
             Vector2 playerPos = _playerController.transform.position;
             Vector2 enemyPos = transform.position;

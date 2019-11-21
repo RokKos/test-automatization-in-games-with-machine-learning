@@ -7,16 +7,14 @@ using IAmHere.Game;
 
 namespace IAmHere.MachineLearning
 {
-    public class IAmHereAgent : Agent
+    public class IAmHereAgentOutSmartedMe : Agent
     {
         [SerializeField] private ControlableEntityController _controlableEntityController = null;
 
         public override void AgentReset()
         {
             GameManager.Instance.WorldManager.SetupControlableEntityEntity(_controlableEntityController);
-            _controlableEntityController.transform.position = GameManager.Instance.WorldManager.GetRandomEmptyCoordinate();
-            _controlableEntityController.GetRigidbody2D().velocity = Vector2.zero;
-            _controlableEntityController.Init();
+            transform.position = GameManager.Instance.WorldManager.GetRandomEmptyCoordinate();
         }
         
         public override void CollectObservations()
@@ -24,7 +22,7 @@ namespace IAmHere.MachineLearning
             Vector2 goalPos = GameManager.Instance.WorldManager.GetGoalPosition();
             AddVectorObs(goalPos);
             
-            Vector2 agentPos = _controlableEntityController.transform.position;
+            Vector2 agentPos = this.transform.position;
             AddVectorObs(agentPos);
 
 
@@ -44,31 +42,17 @@ namespace IAmHere.MachineLearning
             
             Vector2 goalPos = GameManager.Instance.WorldManager.GetGoalPosition();
             Vector2 distanceVec = (Vector2)_controlableEntityController.transform.position - goalPos;
-            float distanceToGoal = distanceVec.magnitude;
-            float maxLevelDistance = GameManager.Instance.WorldManager.GetMaxLenOfLevel();
-
-            if (distanceToGoal > maxLevelDistance)
-            {
-                SetReward(0);
-            }
-            else
-            {
-                float distanceReward = 1 - distanceToGoal / maxLevelDistance;
-                SetReward(distanceReward);
-            }
-
-            
+            float distanceReward = distanceVec.magnitude / GameManager.Instance.WorldManager.GetMaxLenOfLevel();
+            SetReward(distanceReward);
             
             if (_controlableEntityController.GetPlayerDead())
             {
                 SetReward(-1);
-                Done();
             }
             
             if (_controlableEntityController.GetPlayerWon())
             {
                 SetReward(1);
-                Done();
             }
         }
     }

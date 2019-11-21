@@ -61,5 +61,11 @@ namespace IAmHere.Game
             return playerWon;
         }
 
+        public Rigidbody2D GetRigidbody2D()
+        {
+            // TODO(Rok Kos): Serialize this
+            return GetComponent<Rigidbody2D>();
+        }
+
     }
 }

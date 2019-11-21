@@ -21,7 +21,7 @@ namespace IAmHere.WorldGeneration
 
 
         readonly MarchingSquares marchingSquares = new MarchingSquares();
-        private int levelIndex = 0;
+        private int levelIndex = 3;
         private List<ColliderController> levelColliders = null;
 
         [Header("Player")] 
@@ -130,10 +130,10 @@ namespace IAmHere.WorldGeneration
             return Levels.levels[levelIndex];
         }
         
-        public int GetMaxLenOfLevel()
+        public float GetMaxLenOfLevel()
         {
             Level level = GetCurrLevel();
-            return Mathf.Max(level.columns, level.rows);
+            return Mathf.Sqrt(Mathf.Pow(level.columns, 2) + Mathf.Pow(level.rows, 2));
         }
 
         // TODO(Rok Kos): Create helper class with this kind of functions
