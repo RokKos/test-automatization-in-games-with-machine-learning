@@ -1,6 +1,9 @@
 {
-    "name": "IAmHere.Game",
-    "references": [],
+    "name": "IAmHere.Managers",
+    "references": [
+        "GUID:7675249cf40e56046ab4aa72d721edfd",
+        "GUID:874c5d27d779f6c45a9d4e32f65fad4f"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
