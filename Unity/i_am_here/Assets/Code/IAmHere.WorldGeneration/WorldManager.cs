@@ -129,6 +129,12 @@ namespace IAmHere.WorldGeneration
         {
             return Levels.levels[levelIndex];
         }
+        
+        public int GetMaxLenOfLevel()
+        {
+            Level level = GetCurrLevel();
+            return Mathf.Max(level.columns, level.rows);
+        }
 
         // TODO(Rok Kos): Create helper class with this kind of functions
         public static int GetGridIndex(int columns, int y, int x)

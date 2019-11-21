@@ -39,7 +39,12 @@ namespace IAmHere.MachineLearning
             int moveX = Mathf.FloorToInt(vectorAction[0]) - 1;
             int moveY = Mathf.FloorToInt(vectorAction[1]) - 1;
             _controlableEntityController.MoveEntity(new Vector2(moveX, moveY));
-
+            
+            Vector2 goalPos = GameManager.Instance.WorldManager.GetGoalPosition();
+            Vector2 distanceVec = (Vector2)_controlableEntityController.transform.position - goalPos;
+            float distanceReward = distanceVec.magnitude / GameManager.Instance.WorldManager.GetMaxLenOfLevel();
+            SetReward(distanceReward);
+            
             if (_controlableEntityController.GetPlayerDead())
             {
                 SetReward(-1);
@@ -49,8 +54,6 @@ namespace IAmHere.MachineLearning
             {
                 SetReward(1);
             }
-            
-            // Add also for distance
         }
     }
 }
