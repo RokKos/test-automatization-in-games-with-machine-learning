@@ -13,7 +13,7 @@ namespace IAmHere.MachineLearning
 
         public override void AgentReset()
         {
-            
+            GameManager.Instance.WorldManager.SetupControlableEntityEntity(_controlableEntityController);
             transform.position = GameManager.Instance.WorldManager.GetRandomEmptyCoordinate();
         }
         

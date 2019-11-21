@@ -203,7 +203,8 @@ MonoBehaviour:
     type: 3}
   goalControllerPrefab: {fileID: 1300680543057255744, guid: 196c1f4b5a234ef4cb703bfd45c18925,
     type: 3}
-  enemyControllerPrefab: {fileID: 0}
+  enemyControllerPrefab: {fileID: 1155969771824887608, guid: 5b47f9a2637cc45419b16d07acfa61c9,
+    type: 3}
   soundWaveControllerPrefab: {fileID: 6801793016639110317, guid: 5f54300b5e96a4a40b614d5d5921dc19,
     type: 3}
   soundWaveParent: {fileID: 129683632}
@@ -767,6 +768,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1751230219}
+  - component: {fileID: 1751230218}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -774,6 +776,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1751230218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751230217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2239a84c711b245b5faefcec88d866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorldManager: {fileID: 207263974}
 --- !u!4 &1751230219
 Transform:
   m_ObjectHideFlags: 0
@@ -920,6 +935,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079922791034216509, guid: 75aa4c0e56fcb904386b8d27eff75d10,
+        type: 3}
+      propertyPath: m_Model
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75aa4c0e56fcb904386b8d27eff75d10, type: 3}

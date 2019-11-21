@@ -21,7 +21,7 @@ namespace IAmHere.WorldGeneration
 
 
         readonly MarchingSquares marchingSquares = new MarchingSquares();
-        private int levelIndex = 4;
+        private int levelIndex = 0;
         private List<ColliderController> levelColliders = null;
 
         [Header("Player")] 
@@ -145,6 +145,7 @@ namespace IAmHere.WorldGeneration
         private void NextLevel()
         {
             levelIndex++;
+            levelIndex %= Levels.levels.Count;
             mainUiController.StartTransition(Color.white);
         }
         
@@ -209,10 +210,15 @@ namespace IAmHere.WorldGeneration
                 levelCollider.onBurst -= Burst;
                 Destroy(levelCollider.gameObject);   
             }
-            _playerController.onBurst -= Burst;
-            _playerController.onPlayerDead -= GameOver;
-            _playerController.onLevelClear -= NextLevel;
-            Destroy(_playerController.gameObject);
+            
+            if (!isMLTraining)
+            {
+                _playerController.onBurst -= Burst;
+                _playerController.onPlayerDead -= GameOver;
+                _playerController.onLevelClear -= NextLevel;
+                Destroy(_playerController.gameObject);    
+            }
+            
             
             _goalController.onBurst -= Burst;  
             Destroy(_goalController.gameObject);
@@ -274,6 +280,13 @@ namespace IAmHere.WorldGeneration
             }
 
             return _goalController.transform.position;
+        }
+
+        public void SetupControlableEntityEntity(ControlableEntityController entity)
+        {
+            entity.onBurst += Burst;
+            entity.onPlayerDead += GameOver;
+            entity.onLevelClear += NextLevel;
         }
     }
 }

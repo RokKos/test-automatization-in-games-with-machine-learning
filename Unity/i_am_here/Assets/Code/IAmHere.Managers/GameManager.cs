@@ -7,10 +7,10 @@ namespace IAmHere.Managers
     {
         public WorldManager WorldManager = null;
 
-        private void Start()
-        {
-            // TODO(Rok Kos): Rethink this decision
-            WorldManager = FindObjectOfType<WorldManager>();
-        }
+        //private void Awake()
+        //{
+        //    // TODO(Rok Kos): Rethink this decision
+        //    WorldManager = FindObjectOfType<WorldManager>();
+        //}
     }
 }
