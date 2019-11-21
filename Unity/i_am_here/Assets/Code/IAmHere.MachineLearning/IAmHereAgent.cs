@@ -8,6 +8,16 @@ namespace IAmHere.MachineLearning
 {
     public class IAmHereAgent : Agent
     {
+
+        enum MoveInDirection
+        {
+            kStay = 0,
+            kLeft = 1,
+            kRight = 2,
+            kUp = 3,
+            kDown = 4
+        }
+
         public override void AgentReset()
         {
             
@@ -28,6 +38,16 @@ namespace IAmHere.MachineLearning
             {
                 AddVectorObs(ri.rayLenght);
             }
+        }
+
+        public override void AgentAction(float[] vectorAction, string textAction)
+        {    
+            Debug.Log("Agent took action: " + textAction);
+            MoveInDirection movement = (MoveInDirection)Mathf.FloorToInt(vectorAction[0]);
+            //MoveAgent(movement);
+            
+            
+            // Reward
         }
     }
 }

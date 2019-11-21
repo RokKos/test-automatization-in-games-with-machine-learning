@@ -41,7 +41,7 @@ namespace IAmHere.Utilities
             for (float angle = 0; angle < fullCircle; angle += angleIncrement)
             {
                 Vector2 rayDirection = AngleToDir(angle);
-                // TODO(Rok Kos): Check how good is this
+                // TODO(Rok Kos): DO Normalization with the width and height of the level
                 float rayLenght = float.MaxValue;
 
 
