@@ -1,16 +1,14 @@
-﻿using System;
-using UnityEngine;
-using MLAgents;
+﻿using MLAgents;
+using IAmHere.Managers;
 
 namespace IAmHere.MachineLearning
 {
     public class IAmHereAgent : Agent
     {
-        
-        //[SerializeField] private Controller nekController = Nullable;
         public override void AgentReset()
         {
-            //transform.position = WorldManager.GetRandomEmptySpace();  
+            
+            transform.position = GameManager.Instance.WorldManager.GetRandomEmptyCoordinate();  
         }
     }
 }
