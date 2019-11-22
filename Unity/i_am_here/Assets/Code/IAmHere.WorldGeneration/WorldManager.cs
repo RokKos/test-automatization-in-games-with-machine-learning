@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 using IAmHere.Game;
 using IAmHere.UI;
+using UnityEngine.Assertions;
 
 
 namespace IAmHere.WorldGeneration
@@ -133,7 +134,7 @@ namespace IAmHere.WorldGeneration
         public float GetMaxLenOfLevel()
         {
             Level level = GetCurrLevel();
-            return Mathf.Sqrt(Mathf.Pow(level.columns, 2) + Mathf.Pow(level.rows, 2));
+            return Mathf.Sqrt(Mathf.Pow(level.columns / 2.0f, 2) + Mathf.Pow(level.rows / 2.0f, 2));
         }
 
         // TODO(Rok Kos): Create helper class with this kind of functions
@@ -287,6 +288,25 @@ namespace IAmHere.WorldGeneration
             entity.onBurst += Burst;
             entity.onPlayerDead += GameOver;
             entity.onLevelClear += NextLevel;
+        }
+        
+        public Vector2 GetStartCoordinate()
+        {
+            Level level = GetCurrLevel();
+            for (int y = 0; y < level.rows; ++y)
+            {
+                for (int x = 0; x < level.columns; ++x)
+                {
+                    int index = GetGridIndex(level.columns, y, x);
+                    if (level.board[index] == Square.kStart)
+                    {
+                        return new Vector2(x -0.5f, -y + 0.5f);
+                    }
+                }
+            }
+            
+            Assert.IsFalse(false, "There is no start in this level");
+            return new Vector2(level.columns / 2, level.rows / 2);
         }
     }
 }

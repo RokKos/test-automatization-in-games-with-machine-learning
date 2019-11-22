@@ -14,7 +14,8 @@ namespace IAmHere.MachineLearning
         public override void AgentReset()
         {
             GameManager.Instance.WorldManager.SetupControlableEntityEntity(_controlableEntityController);
-            _controlableEntityController.transform.position = GameManager.Instance.WorldManager.GetRandomEmptyCoordinate();
+            //_controlableEntityController.transform.position = GameManager.Instance.WorldManager.GetRandomEmptyCoordinate();
+            _controlableEntityController.transform.position = GameManager.Instance.WorldManager.GetStartCoordinate();
             _controlableEntityController.GetRigidbody2D().velocity = Vector2.zero;
             _controlableEntityController.Init();
         }
@@ -53,7 +54,8 @@ namespace IAmHere.MachineLearning
             }
             else
             {
-                float distanceReward = 1 - distanceToGoal / maxLevelDistance;
+                float distanceReward = 1.0f - distanceToGoal / maxLevelDistance;
+                distanceReward = Mathf.Pow(distanceReward, 2);
                 SetReward(distanceReward);
             }
 
