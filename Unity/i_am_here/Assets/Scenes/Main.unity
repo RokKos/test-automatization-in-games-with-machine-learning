@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceccdc32c7bff7840bc872adcbcd2258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMLTraining: 0
   Levels: {fileID: 11400000, guid: e6437d5664af57749bcea5a347dc688f, type: 2}
   CaseColliders:
   - {fileID: -6677615974908888360, guid: 7125bca320d22fd4f84b7cbfea9b5bd0, type: 3}
@@ -710,6 +711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1751230219}
+  - component: {fileID: 1751230218}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -717,6 +719,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1751230218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751230217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2239a84c711b245b5faefcec88d866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorldManager: {fileID: 207263974}
 --- !u!4 &1751230219
 Transform:
   m_ObjectHideFlags: 0

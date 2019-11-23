@@ -24,6 +24,7 @@ namespace IAmHere.WorldGeneration
         readonly MarchingSquares marchingSquares = new MarchingSquares();
         private int levelIndex = 0;
         private List<ColliderController> levelColliders = null;
+        private List<GameObject> _levelRows = null;
 
         [Header("Player")] 
         [SerializeField] private PlayerController playerControllerPrefab = null;
@@ -45,7 +46,7 @@ namespace IAmHere.WorldGeneration
         
         static System.Random random = new System.Random();
 
-        void Start()
+        public void Init()
         {
             mainUiController.onTransitionOver += Reset;
             LoadNewLevel();
@@ -57,6 +58,7 @@ namespace IAmHere.WorldGeneration
             for (int y = 0; y < res.GetLength(0); y++)
             {
                 GameObject row = Instantiate(temp, new Vector3(0, 0, 0), Quaternion.identity, WorldParent.transform);
+                _levelRows.Add(row);
                 row.name = "row " + y;
                 for (int x = 0; x < res.GetLength(1); x++)
                 {
@@ -212,6 +214,12 @@ namespace IAmHere.WorldGeneration
                 Destroy(levelCollider.gameObject);   
             }
             
+            foreach (var row in _levelRows)
+            {
+                Destroy(row);   
+            }
+            
+            
             if (!isMLTraining)
             {
                 _playerController.onBurst -= Burst;
@@ -229,13 +237,14 @@ namespace IAmHere.WorldGeneration
             _soundWaveControllers = new List<SoundWaveController>();
             _enemyControllers = new List<EnemyController>();
             levelColliders = new List<ColliderController>();
+            _levelRows = new List<GameObject>();
             Level level = GetCurrLevel();
             CreateGrid(marchingSquares.ParseGrid(marchingSquares.ConvertLevelToGrid(level)));
             SpawnEntities();
             mainCameraController.Init(level.columns, level.rows);
         }
         
-        private void Reset() {
+        public void Reset() {
             ClearOldLevel();
             LoadNewLevel();
         }
@@ -286,8 +295,8 @@ namespace IAmHere.WorldGeneration
         public void SetupControlableEntityEntity(ControlableEntityController entity)
         {
             entity.onBurst += Burst;
-            entity.onPlayerDead += GameOver;
-            entity.onLevelClear += NextLevel;
+            //entity.onPlayerDead += GameOver;
+            //entity.onLevelClear += NextLevel;
         }
         
         public Vector2 GetStartCoordinate()

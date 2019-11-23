@@ -26,7 +26,11 @@ namespace IAmHere.Game
         {
             if (other.gameObject.tag == "Goal")
             {
-                onLevelClear();
+                if (onLevelClear != null)
+                {
+                    onLevelClear();
+                }
+
                 playerWon = true;
                 return;
             }
@@ -35,8 +39,12 @@ namespace IAmHere.Game
             if (other.gameObject.tag == "Enviroment")
             {
                 playerDead = true;
-                onPlayerDead(other.gameObject.GetComponent<WorldEntityController>());
                 state = MovingState.kHurt;
+                if (onPlayerDead != null)
+                {
+                    onPlayerDead(other.gameObject.GetComponent<WorldEntityController>());
+                }
+
             }
         }
 

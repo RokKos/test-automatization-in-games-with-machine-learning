@@ -1,4 +1,5 @@
-﻿using IAmHere.Utilities;
+﻿using System;
+using IAmHere.Utilities;
 using IAmHere.WorldGeneration;
 
 namespace IAmHere.Managers
@@ -12,5 +13,10 @@ namespace IAmHere.Managers
         //    // TODO(Rok Kos): Rethink this decision
         //    WorldManager = FindObjectOfType<WorldManager>();
         //}
+
+        private void Start()
+        {
+            WorldManager.Init();
+        }
     }
 }
