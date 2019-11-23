@@ -21,7 +21,7 @@ namespace IAmHere.Utilities
     public class RayCasting : MonoBehaviour
     {
         
-        private static int objectsLayerMask = 1 << 10;
+        private static int objectsLayerMask = (1 << 10) | (1 << 11);
         public static Vector2 AngleToDir(float angle) {
             return new Vector2(Mathf.Sin(angle * Mathf.Deg2Rad), Mathf.Cos(angle * Mathf.Deg2Rad));
         }
@@ -62,6 +62,28 @@ namespace IAmHere.Utilities
             }
 
             return rays;
+        }
+
+        public static Collider2D CastRayToHit(Vector2 pos, Vector2 goal, bool debugRay)
+        {
+            Collider2D collider2D = null;
+            float rayLenght = float.MaxValue;
+            Vector2 rayDirection = (goal - pos).normalized;
+
+            RaycastHit2D hit = Physics2D.Raycast(pos, rayDirection, rayLenght, objectsLayerMask);
+            if (hit.collider != null)
+            {
+                rayLenght = hit.distance;
+                collider2D = hit.collider;
+            }
+            
+
+            if (debugRay)
+            {
+                Debug.DrawRay(pos, rayDirection * rayLenght, Color.red);
+            }
+
+            return collider2D;
         }
     }
 }

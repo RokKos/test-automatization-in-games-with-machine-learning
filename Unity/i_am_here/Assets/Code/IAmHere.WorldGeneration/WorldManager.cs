@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using UnityEngine;
-using System.Collections.Generic;
+using UnityEngine.Assertions;
 
 using IAmHere.Game;
 using IAmHere.UI;
-using UnityEngine.Assertions;
 
 
 namespace IAmHere.WorldGeneration
@@ -22,7 +22,7 @@ namespace IAmHere.WorldGeneration
 
 
         readonly MarchingSquares marchingSquares = new MarchingSquares();
-        private int levelIndex = 3;
+        private int levelIndex = 0;
         private List<ColliderController> levelColliders = null;
 
         [Header("Player")] 

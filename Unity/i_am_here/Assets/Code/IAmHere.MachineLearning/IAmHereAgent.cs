@@ -44,21 +44,32 @@ namespace IAmHere.MachineLearning
             _controlableEntityController.MoveEntity(new Vector2(moveX, moveY));
             
             Vector2 goalPos = GameManager.Instance.WorldManager.GetGoalPosition();
-            Vector2 distanceVec = (Vector2)_controlableEntityController.transform.position - goalPos;
-            float distanceToGoal = distanceVec.magnitude;
-            float maxLevelDistance = GameManager.Instance.WorldManager.GetMaxLenOfLevel();
+            Vector2 agentPos = _controlableEntityController.transform.position;
+            Collider2D collider2D = RayCasting.CastRayToHit(agentPos, goalPos, true);
+            bool seeGoal = collider2D.tag == "Goal";
 
-            if (distanceToGoal > maxLevelDistance)
+            if (seeGoal)
             {
-                SetReward(0);
-            }
-            else
-            {
-                float distanceReward = 1.0f - distanceToGoal / maxLevelDistance;
-                distanceReward = Mathf.Pow(distanceReward, 2);
-                SetReward(distanceReward);
+                
+                Vector2 distanceVec = (Vector2)_controlableEntityController.transform.position - goalPos;
+                float distanceToGoal = distanceVec.magnitude;
+                float maxLevelDistance = GameManager.Instance.WorldManager.GetMaxLenOfLevel();
+
+                if (distanceToGoal > maxLevelDistance)
+                {
+                    SetReward(0);
+                }
+                else
+                {
+                    float distanceReward = 1.0f - distanceToGoal / maxLevelDistance;
+                    distanceReward = Mathf.Pow(distanceReward, 4);
+                    SetReward(distanceReward);
+                }
             }
 
+            
+
+            // TODO(Rok Kos): Decrease reward the longer agent is alive
             
             
             if (_controlableEntityController.GetPlayerDead())
