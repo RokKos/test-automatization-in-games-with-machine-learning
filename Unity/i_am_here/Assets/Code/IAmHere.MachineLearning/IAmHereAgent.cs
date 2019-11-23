@@ -11,6 +11,8 @@ namespace IAmHere.MachineLearning
     {
         [SerializeField] private ControlableEntityController _controlableEntityController = null;
 
+        private float minGoalDistance = float.MaxValue;
+
         public override void AgentReset()
         {
             GameManager.Instance.WorldManager.SetupControlableEntityEntity(_controlableEntityController);
@@ -18,6 +20,7 @@ namespace IAmHere.MachineLearning
             _controlableEntityController.transform.position = GameManager.Instance.WorldManager.GetStartCoordinate();
             _controlableEntityController.GetRigidbody2D().velocity = Vector2.zero;
             _controlableEntityController.Init();
+            minGoalDistance = float.MaxValue;
         }
         
         public override void CollectObservations()
@@ -34,6 +37,8 @@ namespace IAmHere.MachineLearning
             {
                 AddVectorObs(ri.rayLenght);
             }
+            
+            AddVectorObs(GetStepCount() / (float)agentParameters.maxStep);
         }
 
         public override void AgentAction(float[] vectorAction, string textAction)
@@ -57,24 +62,25 @@ namespace IAmHere.MachineLearning
 
                 if (distanceToGoal > maxLevelDistance)
                 {
-                    SetReward(0);
+                    AddReward(0);
                 }
-                else
+                else if (minGoalDistance > distanceToGoal)
                 {
+                    minGoalDistance = distanceToGoal;
                     float distanceReward = 1.0f - distanceToGoal / maxLevelDistance;
                     distanceReward = Mathf.Pow(distanceReward, 4);
-                    SetReward(distanceReward);
+                    AddReward(distanceReward);
                 }
             }
 
             
-
             // TODO(Rok Kos): Decrease reward the longer agent is alive
+            AddReward(-1f / agentParameters.maxStep);
             
             
             if (_controlableEntityController.GetPlayerDead())
             {
-                SetReward(-1);
+                SetReward(-3);
                 Done();
             }
             

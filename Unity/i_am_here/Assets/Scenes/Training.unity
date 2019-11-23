@@ -271,7 +271,7 @@ MonoBehaviour:
     width: 80
     height: 80
     qualityLevel: 1
-    timeScale: 100
+    timeScale: 3
     targetFrameRate: -1
   m_InferenceConfiguration:
     width: 1280
@@ -281,6 +281,7 @@ MonoBehaviour:
     targetFrameRate: 60
   resetParameters:
     m_ResetParameters: []
+  WorldManager: {fileID: 207263974}
 --- !u!1 &589147925
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,5 +943,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5022602860645237092, guid: 26439ce4e967f9a4290d6a4347338036,
         type: 3}
+    - target: {fileID: 8079922791034216509, guid: 75aa4c0e56fcb904386b8d27eff75d10,
+        type: 3}
+      propertyPath: m_BrainParameters.vectorObservationSize
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079922791034216508, guid: 75aa4c0e56fcb904386b8d27eff75d10,
+        type: 3}
+      propertyPath: agentParameters.maxStep
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75aa4c0e56fcb904386b8d27eff75d10, type: 3}
